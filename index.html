@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Choi Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #111;
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 724px;
+      margin: 0 auto;
+      padding: 82px 62px;
+      display: flex;
+      flex-direction: column;
+      gap: 55px;
+    }
+
+    /* Header / Profile Section */
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .profile-photo {
+      width: 94px;
+      height: 116px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .profile-info h1 {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .profile-info p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    /* Navigation Links */
+    .nav-links {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    .nav-links a {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #111;
+      text-decoration: none;
+      line-height: 1.8;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.7;
+    }
+
+    .arrow-icon {
+      width: 7px;
+      height: 7px;
+      flex-shrink: 0;
+    }
+
+    /* Bio Content */
+    .bio {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .bio p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #111;
+      line-height: 1.8;
+    }
+
+    .bio a {
+      color: #111;
+      text-decoration: underline;
+    }
+
+    .bio a:hover {
+      color: #555;
+    }
+
+    /* Interests List */
+    .interests {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .interests p {
+      font-size: 14px;
+      color: #111;
+      line-height: 1.8;
+      margin-bottom: 4px;
+    }
+
+    .interests li {
+      list-style: none;
+      font-size: 14px;
+      color: #111;
+      line-height: 1.8;
+    }
+
+    .interests li::before {
+      content: "\2192\00a0";
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 730px) {
+      .container {
+        max-width: 100%;
+        padding: 70px 22px;
+        gap: 32px;
+      }
+
+      .profile {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .profile-photo {
+        width: 80px;
+        height: 100px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 8px 24px;
+      }
+
+      .nav-links a {
+        flex: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Profile Header -->
+    <div class="profile">
+      <img src="profile.png" alt="John Choi headshot" class="profile-photo">
+      <div class="profile-info">
+        <h1>John Choi</h1>
+        <p>Senior Product Designer</p>
+      </div>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="nav-links">
+      <a href="/resume" target="_blank">
+        Resume
+        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+          <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/johnsychoi/" target="_blank" rel="noopener noreferrer">
+        LinkedIn
+        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+          <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
+        </svg>
+      </a>
+      <a href="mailto:choi7sx@gmail.com">
+        Email
+        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+          <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
+        </svg>
+      </a>
+      <a href="https://www.figma.com/deck/rVBi4qGQG7eFwxVQbYNoy9/Portfolio-Website?node-id=2027-20299&viewport=-109%2C-1448%2C0.52&t=WBMXCrpvVqs1v2hC-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" rel="noopener noreferrer">
+        Portfolio
+        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+          <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
+        </svg>
+      </a>
+    </nav>
+
+    <!-- Bio Section -->
+    <section class="bio">
+      <p>John Choi is a seasoned Product and UX Designer known for uniting visual design, business strategy, and human&#8209;centered thinking to create meaningful, measurable impact. He has a rare ability to simplify complex problems and propose solutions that simultaneously advance user needs and organizational goals.</p>
+
+      <p>John currently serves as a Senior UX Designer in a managerial role at The Nature Conservancy &mdash; a global environmental nonprofit working to create a world where people and nature thrive. TNC operates in 80+ countries and territories and leads conservation efforts grounded in science and collaboration.</p>
+
+      <p>At TNC, John leads a hybrid team of a full&#8209;time designer and several contractors while shaping user experience initiatives for <a href="https://nature.org" target="_blank" rel="noopener noreferrer">nature.org</a>, a site that communicates the organization&rsquo;s mission to conserve the lands and waters on which all life depends.</p>
+
+      <!-- Interests -->
+      <div class="interests">
+        <p>When he&rsquo;s not designing, John enjoys:</p>
+        <ul>
+          <li>Jiu Jitsu</li>
+          <li>Sci&#8209;fi books</li>
+          <li>Building a cabin</li>
+          <li>Flipping houses</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
