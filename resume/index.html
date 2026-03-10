@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Choi Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #111;
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 724px;
+      margin: 0 auto;
+      padding: 82px 62px;
+      display: flex;
+      flex-direction: column;
+      gap: 55px;
+    }
+
+    /* Return Home */
+    .return-home {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #111;
+      text-decoration: none;
+      line-height: 1.8;
+    }
+
+    .return-home:hover {
+      opacity: 0.7;
+    }
+
+    .return-home svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Profile Header */
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .profile-photo {
+      width: 125px;
+      height: 184px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .profile-info h1 {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .profile-info p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    /* Section */
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 400;
+      color: #111;
+      line-height: 1.8;
+    }
+
+    /* Resume Entry */
+    .entry {
+      display: flex;
+      gap: 0;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .entry:hover {
+      opacity: 0.7;
+    }
+
+    .entry-date {
+      width: 130px;
+      flex-shrink: 0;
+      font-size: 14px;
+      font-weight: 400;
+      color: #999;
+      line-height: 1.8;
+    }
+
+    .entry-content {
+      flex: 1;
+    }
+
+    .entry-title {
+      font-size: 14px;
+      font-weight: 400;
+      color: #111;
+      line-height: 1.8;
+      display: inline;
+    }
+
+    .entry-arrow {
+      width: 7px;
+      height: 7px;
+      flex-shrink: 0;
+      display: inline-block;
+      position: relative;
+      top: -2px;
+      margin-left: 3px;
+    }
+
+    .entry-location {
+      font-size: 14px;
+      font-weight: 400;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 730px) {
+      .container {
+        max-width: 100%;
+        padding: 70px 22px;
+        gap: 32px;
+      }
+
+      .profile {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .profile-photo {
+        width: 100px;
+        height: 148px;
+      }
+
+      .entry {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .entry-date {
+        width: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Return Home -->
+    <a href="/" class="return-home">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path d="M12 7H2M2 7L7 2M2 7L7 12" stroke="#111" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Return Home
+    </a>
+
+    <!-- Profile Header -->
+    <div class="profile">
+      <img src="../profile.png" alt="John Choi headshot" class="profile-photo">
+      <div class="profile-info">
+        <h1>John Choi</h1>
+        <p>Product Designer</p>
+      </div>
+    </div>
+
+    <!-- Work Experience -->
+    <div class="section">
+      <h2 class="section-title">Work Experience</h2>
+
+      <a href="https://www.nature.org/en-us/" target="_blank" rel="noopener noreferrer" class="entry">
+        <span class="entry-date">2025 — Now</span>
+        <div class="entry-content">
+          <span class="entry-title">Senior UX Designer at The Nature Conservancy</span>
+          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
+          </svg>
+          <div class="entry-location">Remote</div>
+        </div>
+      </a>
+
+      <a href="https://www.nature.org/en-us/" target="_blank" rel="noopener noreferrer" class="entry">
+        <span class="entry-date">2023 — 2025</span>
+        <div class="entry-content">
+          <span class="entry-title">UX Designer at The Nature Conservancy</span>
+          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
+          </svg>
+          <div class="entry-location">Remote</div>
+        </div>
+      </a>
+
+      <a href="https://www.m13.co/launchpad" target="_blank" rel="noopener noreferrer" class="entry">
+        <span class="entry-date">2024 — 2025</span>
+        <div class="entry-content">
+          <span class="entry-title">(Freelance) Product Designer at M13</span>
+          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
+          </svg>
+          <div class="entry-location">United States</div>
+        </div>
+      </a>
+
+      <a href="https://fervorcreative.com/" target="_blank" rel="noopener noreferrer" class="entry">
+        <span class="entry-date">2023</span>
+        <div class="entry-content">
+          <span class="entry-title">Digital Designer at Fervor Creative</span>
+          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
+          </svg>
+          <div class="entry-location">Phoenix, AZ</div>
+        </div>
+      </a>
+
+      <a href="https://www.jll.com/en-us" target="_blank" rel="noopener noreferrer" class="entry">
+        <span class="entry-date">2020 — 2022</span>
+        <div class="entry-content">
+          <span class="entry-title">Senior Designer at JLL</span>
+          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
+          </svg>
+          <div class="entry-location">Chicago, IL</div>
+        </div>
+      </a>
+
+      <a href="https://www.abelsontaylor.com/" target="_blank" rel="noopener noreferrer" class="entry">
+        <span class="entry-date">2020</span>
+        <div class="entry-content">
+          <span class="entry-title">Associate Art Director at AbelsonTaylor</span>
+          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
+          </svg>
+          <div class="entry-location">Chicago, IL</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+      <h2 class="section-title">Education</h2>
+
+      <div class="entry">
+        <span class="entry-date">2018 — 2020</span>
+        <div class="entry-content">
+          <span class="entry-title">Master's in Visual Communication Design at SAIC</span>
+          <div class="entry-location">Chicago, IL</div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <span class="entry-date">2013 — 2017</span>
+        <div class="entry-content">
+          <span class="entry-title">Bachelor's in Architectural Design at James Madison University</span>
+          <div class="entry-location">Harrisonburg, VA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
