@@ -59,15 +59,15 @@
     }
 
     .profile-photo {
-      width: 125px;
-      height: 184px;
+      width: 94px;
+      height: 116px;
       object-fit: cover;
       flex-shrink: 0;
     }
 
     .profile-info h1 {
       font-size: 20px;
-      font-weight: 400;
+      font-weight: 700;
       line-height: 1.3;
       color: #111;
       margin-bottom: 4px;
@@ -102,7 +102,7 @@
       color: inherit;
     }
 
-    .entry:hover {
+    a.entry:hover {
       opacity: 0.7;
     }
 
@@ -124,17 +124,22 @@
       font-weight: 400;
       color: #111;
       line-height: 1.8;
-      display: inline;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .entry-arrow {
       width: 7px;
       height: 7px;
       flex-shrink: 0;
-      display: inline-block;
       position: relative;
-      top: -2px;
-      margin-left: 3px;
+      top: -1px;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .entry:hover .entry-arrow {
+      transform: scale(1.3);
     }
 
     .entry-location {
@@ -189,7 +194,7 @@
       <img src="../profile.png" alt="John Choi headshot" class="profile-photo">
       <div class="profile-info">
         <h1>John Choi</h1>
-        <p>Product Designer</p>
+        <p>Senior Product Designer</p>
       </div>
     </div>
 
@@ -197,13 +202,18 @@
     <div class="section">
       <h2 class="section-title">Work Experience</h2>
 
+      <a href="https://innercirclenet.com/" target="_blank" rel="noopener noreferrer" class="entry">
+        <span class="entry-date">2026 — Now</span>
+        <div class="entry-content">
+          <span class="entry-title">Founder at Inner Circle Network <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7"><path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/></svg></span>
+          <div class="entry-location">Remote</div>
+        </div>
+      </a>
+
       <a href="https://www.nature.org/en-us/" target="_blank" rel="noopener noreferrer" class="entry">
         <span class="entry-date">2025 — Now</span>
         <div class="entry-content">
-          <span class="entry-title">Senior UX Designer at The Nature Conservancy</span>
-          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
-            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
-          </svg>
+          <span class="entry-title">Senior UX Designer at The Nature Conservancy <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7"><path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/></svg></span>
           <div class="entry-location">Remote</div>
         </div>
       </a>
@@ -211,10 +221,7 @@
       <a href="https://www.nature.org/en-us/" target="_blank" rel="noopener noreferrer" class="entry">
         <span class="entry-date">2023 — 2025</span>
         <div class="entry-content">
-          <span class="entry-title">UX Designer at The Nature Conservancy</span>
-          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
-            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
-          </svg>
+          <span class="entry-title">UX Designer at The Nature Conservancy <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7"><path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/></svg></span>
           <div class="entry-location">Remote</div>
         </div>
       </a>
@@ -222,10 +229,7 @@
       <a href="https://www.m13.co/launchpad" target="_blank" rel="noopener noreferrer" class="entry">
         <span class="entry-date">2024 — 2025</span>
         <div class="entry-content">
-          <span class="entry-title">(Freelance) Product Designer at M13</span>
-          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
-            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
-          </svg>
+          <span class="entry-title">(Freelance) Product Designer at M13 <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7"><path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/></svg></span>
           <div class="entry-location">United States</div>
         </div>
       </a>
@@ -233,10 +237,7 @@
       <a href="https://fervorcreative.com/" target="_blank" rel="noopener noreferrer" class="entry">
         <span class="entry-date">2023</span>
         <div class="entry-content">
-          <span class="entry-title">Digital Designer at Fervor Creative</span>
-          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
-            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
-          </svg>
+          <span class="entry-title">Digital Designer at Fervor Creative <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7"><path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/></svg></span>
           <div class="entry-location">Phoenix, AZ</div>
         </div>
       </a>
@@ -244,10 +245,7 @@
       <a href="https://www.jll.com/en-us" target="_blank" rel="noopener noreferrer" class="entry">
         <span class="entry-date">2020 — 2022</span>
         <div class="entry-content">
-          <span class="entry-title">Senior Designer at JLL</span>
-          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
-            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
-          </svg>
+          <span class="entry-title">Senior Designer at JLL <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7"><path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/></svg></span>
           <div class="entry-location">Chicago, IL</div>
         </div>
       </a>
@@ -255,10 +253,7 @@
       <a href="https://www.abelsontaylor.com/" target="_blank" rel="noopener noreferrer" class="entry">
         <span class="entry-date">2020</span>
         <div class="entry-content">
-          <span class="entry-title">Associate Art Director at AbelsonTaylor</span>
-          <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
-            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/>
-          </svg>
+          <span class="entry-title">Associate Art Director at AbelsonTaylor <svg class="entry-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7"><path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="#111111"/></svg></span>
           <div class="entry-location">Chicago, IL</div>
         </div>
       </a>
