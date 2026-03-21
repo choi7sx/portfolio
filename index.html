@@ -169,6 +169,30 @@
       content: "\2192\00a0";
     }
 
+    /* Impact List */
+    .impact-list {
+      list-style: none;
+      margin-left: 0;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .impact-list li {
+      font-size: 14px;
+      color: #111;
+      line-height: 1.8;
+      margin-left: 16px;
+      position: relative;
+    }
+
+    .impact-list li::before {
+      content: "•";
+      position: absolute;
+      left: -12px;
+    }
+
     /* Mobile Responsive */
     @media (max-width: 730px) {
       .container {
@@ -318,11 +342,21 @@
 
     <!-- Bio Section -->
     <section class="bio">
-      <p>John Choi is a seasoned Product and UX Designer known for uniting visual design, business strategy, and human&#8209;centered thinking to create meaningful, measurable impact. He has a rare ability to simplify complex problems and propose solutions that simultaneously advance user needs and organizational goals.</p>
+      <p>John Choi is a seasoned Product and UX Designer known for uniting visual design, business strategy, and human&#8209;centered thinking to create meaningful, measurable impact. He simplifies complex problems and ships solutions that advance user needs and organizational goals in tandem.</p>
 
-      <p>John currently serves as a Senior UX Designer in a managerial role at The Nature Conservancy &mdash; a global environmental nonprofit working to create a world where people and nature thrive. TNC operates in 80+ countries and territories and leads conservation efforts grounded in science and collaboration.</p>
+      <p>John currently serves as a Senior UX Designer in a managerial role at <a href="https://www.nature.org" target="_blank" rel="noopener noreferrer">The Nature Conservancy (TNC)</a>&mdash;a global environmental nonprofit working to create a world where people and nature thrive, operating in 80+ countries and territories. At TNC, he leads a hybrid team of one full&#8209;time designer and several contractors while shaping user experience initiatives for <a href="https://nature.org" target="_blank" rel="noopener noreferrer">nature.org</a>, the organization&rsquo;s primary platform for communicating its mission to conserve the lands and waters on which all life depends.</p>
 
-      <p>At TNC, John leads a hybrid team of a full&#8209;time designer and several contractors while shaping user experience initiatives for <a href="https://nature.org" target="_blank" rel="noopener noreferrer">nature.org</a>, a site that communicates the organization&rsquo;s mission to conserve the lands and waters on which all life depends.</p>
+      <p style="margin-bottom: -24px"><strong>Selected impact at TNC:</strong></p>
+      <ul class="impact-list">
+        <li>Led the launch of several web products and implemented a new site&#8209;wide information architecture that helped the organization raise $1.4B in FY25.</li>
+        <li>Helped launch a new conservation resource site housing 5,000+ research assets used globally.</li>
+        <li>Designed and launched 20+ features across the ecosystem.</li>
+        <li>Currently driving the migration of 100+ off&#8209;site properties into a unified CMS platform.</li>
+      </ul>
+
+      <p>Beyond TNC, John designed and launched a 0&rarr;1 product that reached 150% of expected users in its first week using AI tools.</p>
+
+      <p>He also freelances for Sports Illustrated Tickets as their first Product Designer, building out their new backend dashboard that supports many internal and external teams.</p>
 
       <!-- Interests -->
       <div class="interests">
