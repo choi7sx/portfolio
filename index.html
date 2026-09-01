@@ -9,13 +9,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>
-    /* Navigation Links */
+    /* Navigation Links -------------------------------------------------
+       .nav-links is the sticky shell: it holds the layout slot and is
+       never transformed, so the scroll script can read a stable position.
+       .nav-bar is the glass panel that slides away. */
     .nav-links {
-      display: flex;
-      flex-wrap: nowrap;
+      position: sticky;
+      top: var(--space-16);
+      z-index: 10;
     }
 
-    .nav-links a {
+    .nav-bar {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      padding: var(--space-12) var(--space-24);
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.5);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow:
+        0 10px 30px rgba(29, 29, 31, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+      transition:
+        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease;
+      will-change: transform;
+    }
+
+    /* Slides up out of view while scrolling down */
+    .nav-bar.is-hidden {
+      transform: translateY(calc(-100% - var(--space-24)));
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Without backdrop-filter the panel needs to carry its own opacity */
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .nav-bar {
+        background: rgba(255, 255, 255, 0.85);
+      }
+    }
+
+    .nav-bar a {
       flex: 1;
       display: flex;
       align-items: center;
@@ -27,12 +64,18 @@
       cursor: pointer;
     }
 
-    .nav-links a:hover {
+    .nav-bar a:hover {
       color: var(--color-link-blue);
     }
 
-    .nav-links a:hover .arrow-icon {
+    .nav-bar a:hover .arrow-icon {
       transform: scale(1.3);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-bar {
+        transition: none;
+      }
     }
 
     /* Bio Content */
@@ -90,12 +133,18 @@
 
     /* Mobile Responsive */
     @media (max-width: 730px) {
-      .nav-links {
-        flex-wrap: wrap;
-        gap: var(--space-8) var(--space-24);
+      /* The four links can't fit one row at this width, so lay them out
+         as a balanced 2x2 instead of letting them wrap 3+1 */
+      .nav-bar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-8) var(--space-16);
+        padding: var(--space-16) var(--space-20);
+        /* A squircle reads better than a stadium at two rows tall */
+        border-radius: var(--radius-3xl);
       }
 
-      .nav-links a {
+      .nav-bar a {
         flex: none;
       }
     }
@@ -192,30 +241,32 @@
 
     <!-- Navigation Links -->
     <nav class="nav-links">
-      <a href="/resume">
-        Resume
-        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
-          <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="currentColor"/>
-        </svg>
-      </a>
-      <a href="https://www.linkedin.com/in/johnsychoi/" target="_blank" rel="noopener noreferrer">
-        LinkedIn
-        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
-          <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="currentColor"/>
-        </svg>
-      </a>
-      <a href="mailto:choi7sx@gmail.com">
-        Email
-        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
-          <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="currentColor"/>
-        </svg>
-      </a>
-      <a href="https://www.figma.com/deck/BbbnZm2Ig6ePxr4KX7pvmM" target="_blank" rel="noopener noreferrer">
-        Portfolio
-        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
-          <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="currentColor"/>
-        </svg>
-      </a>
+      <div class="nav-bar">
+        <a href="/resume">
+          Resume
+          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/johnsychoi/" target="_blank" rel="noopener noreferrer">
+          LinkedIn
+          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="mailto:choi7sx@gmail.com">
+          Email
+          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="https://www.figma.com/deck/BbbnZm2Ig6ePxr4KX7pvmM" target="_blank" rel="noopener noreferrer">
+          Portfolio
+          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
+            <path d="M1 0C0.724 0 0.5 0.224 0.5 0.5C0.5 0.776 0.724 1 1 1V0ZM6 0.5H6.5C6.5 0.224 6.276 0 6 0V0.5ZM5.5 5.5C5.5 5.776 5.724 6 6 6C6.276 6 6.5 5.776 6.5 5.5H5.5ZM0.146 5.646C-0.049 5.842-0.049 6.158 0.146 6.354C0.342 6.549 0.658 6.549 0.854 6.354L0.146 5.646ZM1 1H6V0H1V1ZM5.5 0.5V5.5H6.5V0.5H5.5ZM5.646 0.146L0.146 5.646L0.854 6.354L6.354 0.854L5.646 0.146Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
     </nav>
 
     <!-- Bio Section -->
@@ -236,5 +287,47 @@
       <p>Outside of work, I&rsquo;m co&#8209;founding a supplement company called MorningDew with my brother. When I&rsquo;m not designing products, you&rsquo;ll usually find me training Brazilian Jiu&#8209;Jitsu, reading science fiction, spending time with my family, or sweating through a sauna session.</p>
     </section>
   </div>
+
+  <script>
+    (function () {
+      var nav = document.querySelector('.nav-links');
+      var bar = nav && nav.querySelector('.nav-bar');
+      if (!bar) return;
+
+      var stickTop = parseFloat(getComputedStyle(nav).top) || 0;
+      var lastY = window.pageYOffset;
+      var ticking = false;
+
+      function update() {
+        ticking = false;
+        var y = window.pageYOffset;
+        var delta = y - lastY;
+
+        // Ignore sub-pixel jitter; let small moves accumulate instead.
+        if (Math.abs(delta) < 4) return;
+
+        // Only hide once the bar has actually reached its sticky position,
+        // so it never vanishes while still sitting in the page flow.
+        var stuck = nav.getBoundingClientRect().top <= stickTop + 1;
+        if (delta > 0 && stuck) {
+          bar.classList.add('is-hidden');
+        } else if (delta < 0) {
+          bar.classList.remove('is-hidden');
+        }
+        lastY = y;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', function () {
+        stickTop = parseFloat(getComputedStyle(nav).top) || 0;
+      });
+    })();
+  </script>
 </body>
 </html>
