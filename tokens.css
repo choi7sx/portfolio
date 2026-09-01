@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Design tokens
+   Generated from tokens.json (extended variant).
+   Primitives only — semantic usage lives in shared.css and page styles.
+   ========================================================================== */
+
+:root {
+  /* ---------- Color ---------- */
+  --color-primary-ink: #1d1d1f;      /* Headlines, body text, button labels */
+  --color-deep-gray: #474747;        /* Navigation text at medium emphasis */
+  --color-mid-gray: #707070;         /* Secondary text, nav inactive, muted labels */
+  --color-quiet-dot: #777779;        /* Pagination fills, tertiary interactive state */
+  --color-hairline: #d6d6d6;         /* Hairline borders between sections */
+  --color-canvas: #f5f5f7;           /* Alternating section backgrounds */
+  --color-cool-wash: #e8e8ed;        /* Subtle button backgrounds, hovered surfaces */
+  --color-faded-surface: #fafafc;    /* Global nav opened state, elevated panels */
+  --color-paper: #ffffff;            /* Card surfaces, page background, text on dark */
+
+  --color-electric-blue: #0071e3;    /* Filled action buttons — the only chromatic accent */
+  --color-link-blue: #0066cc;        /* Inline body text links, arrow-link chevron text */
+  --color-ember: #b64400;            /* Orange state accent for badges and status labels */
+
+  /* Product finish swatches */
+  --color-sky: #c8d8e0;
+  --color-citrus: #dddc8c;
+  --color-starlight: #f0e4d3;
+  --color-silver: #e3e4e5;
+  --color-blush: #e8d0d0;
+  --color-indigo: #596680;
+  --color-midnight: #2e3642;
+  --color-citrus-gradient: #3b3b23;
+
+  /* ---------- Surface levels ---------- */
+  --surface-canvas-white: #ffffff;   /* 0: default light canvas */
+  --surface-canvas-gray: #f5f5f7;    /* 1: alternating bands, footer, badges */
+  --surface-hover-wash: #e8e8ed;     /* 2: hover on light buttons */
+  --surface-nav-elevated: #fafafc;   /* 3: nav after scroll */
+
+  /* ---------- Font families ---------- */
+  --font-sf-pro-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-sf-pro-text: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  /* Tracking, per the family descriptions in tokens.json */
+  --tracking-display: 0.004em;       /* Slightly positive on mid-size display headings */
+  --tracking-headline: -0.02em;      /* Tight on large display headlines */
+  --tracking-text: -0.01em;          /* Negative tightens body copy for crispness */
+
+  /* ---------- Typography steps (CSS `font` shorthand) ---------- */
+  --type-xs:    400 8px/1.43 var(--font-sf-pro-text);
+  --type-xs-2:  400 12px/1 var(--font-sf-pro-text);
+  --type-xs-3:  400 12px/1.83 var(--font-sf-pro-text);
+  --type-xs-4:  400 12px/1.33 var(--font-sf-pro-text);
+  --type-xs-5:  600 12px/1.33 var(--font-sf-pro-text);
+
+  --type-sm:    400 14px/1.43 var(--font-sf-pro-text);
+  --type-sm-2:  600 14px/1.43 var(--font-sf-pro-text);
+  --type-sm-3:  400 14px/1.29 var(--font-sf-pro-text);
+
+  --type-lg:    400 17px/1.47 var(--font-sf-pro-text);   /* The workhorse body step */
+  --type-lg-2:  600 17px/1.24 var(--font-sf-pro-text);
+  --type-lg-3:  400 17px/1.47 var(--font-sf-pro-text);
+  --type-lg-4:  400 17px/1.24 var(--font-sf-pro-text);
+  --type-lg-5:  400 17px/1.18 var(--font-sf-pro-text);
+  --type-lg-6:  400 17px/1 var(--font-sf-pro-text);
+  --type-lg-7:  500 17px/1.47 var(--font-sf-pro-text);
+
+  --type-xl:    400 20px/1.47 var(--font-sf-pro-text);
+  --type-xl-2:  600 20px/1.47 var(--font-sf-pro-text);
+  --type-xl-3:  400 20px/1.33 var(--font-sf-pro-text);
+  --type-xl-4:  600 21px/1.14 var(--font-sf-pro-display);
+  --type-xl-5:  600 21px/1.38 var(--font-sf-pro-display);
+
+  --type-2xl:   600 24px/1.17 var(--font-sf-pro-display);
+  --type-2xl-2: 600 28px/1.14 var(--font-sf-pro-display);
+
+  --type-3xl:   700 32px/1.13 var(--font-sf-pro-display);
+  --type-3xl-2: 600 32px/1.13 var(--font-sf-pro-display);
+
+  --type-4xl:   600 40px/1.2 var(--font-sf-pro-display);
+  --type-4xl-2: 400 44px/1 var(--font-sf-pro-text);
+
+  --type-5xl:   700 56px/1.07 var(--font-sf-pro-display);
+  --type-5xl-2: 600 56px/1.07 var(--font-sf-pro-display);
+  --type-5xl-3: 700 80px/1.05 var(--font-sf-pro-display);
+  --type-5xl-4: 600 96px/1.04 var(--font-sf-pro-display);
+
+  /* ---------- Spacing ---------- */
+  --space-unit: 4px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-44: 44px;
+  --space-48: 48px;
+  --space-52: 52px;
+  --space-76: 76px;
+  --space-80: 80px;
+  --space-120: 120px;
+  --space-144: 144px;
+
+  /* ---------- Radius ---------- */
+  --radius-lg: 10px;
+  --radius-3xl: 28px;
+  --radius-3xl-2: 32px;
+  --radius-3xl-3: 36px;
+  --radius-full: 980px;
+  --radius-full-2: 999px;
+  --radius-full-3: 9999px;
+}
