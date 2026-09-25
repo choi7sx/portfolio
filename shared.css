@@ -20,39 +20,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Animated background scene (index + case studies) --------------------- */
-
-/* Artwork color, not a design token — matches the canvas painted in JS. */
-.has-bg-scene {
-  --scene-base: #a8c4d8;
-  background: var(--scene-base);
-}
-
-.has-bg-scene body {
-  background: transparent;
-  position: relative;
-  min-height: 100vh;
-}
-
-.bg-scene {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-  background: var(--scene-base);
-}
-
-.bg-scene canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
 /* Layout --------------------------------------------------------------- */
 
 .container {
