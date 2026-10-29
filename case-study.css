@@ -69,10 +69,21 @@
 
 .cs-meta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: var(--space-24) var(--space-32);
-  padding-top: var(--space-24);
+  grid-template-columns: auto auto minmax(0, 1fr) minmax(0, 1fr);
+  padding: var(--space-16) 0;
   border-top: 1px solid var(--color-hairline);
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+/* Each fact is divided from the next by a hairline */
+.cs-meta > div {
+  padding: 0 var(--space-24);
+  border-left: 1px solid var(--color-hairline);
+}
+
+.cs-meta > div:first-child {
+  padding-left: 0;
+  border-left: 0;
 }
 
 .cs-meta dt {
@@ -83,7 +94,23 @@
 }
 
 .cs-meta dd {
-  font: var(--type-lg);
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-primary-ink);
+}
+
+/* Outcomes panel: the header's results, set apart from the facts above */
+.cs-outcomes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-28) var(--space-32);
+  border-radius: var(--radius-lg);
+  background: rgba(0, 113, 227, 0.06);
+}
+
+.cs-outcomes h2 {
+  font: var(--type-lg-2);
   letter-spacing: var(--tracking-text);
   color: var(--color-primary-ink);
 }
@@ -107,7 +134,7 @@
   content: "0" counter(tldr);
   display: block;
   font: var(--type-sm-2);
-  color: var(--color-mid-gray);
+  color: var(--color-link-blue);
   margin-bottom: var(--space-8);
 }
 
@@ -453,6 +480,24 @@
 
   .cs-tagline {
     font: var(--type-xl-3);
+  }
+
+  .cs-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-16) 0;
+  }
+
+  .cs-meta > div {
+    padding: 0 var(--space-16);
+  }
+
+  .cs-meta > div:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .cs-outcomes {
+    padding: var(--space-20);
   }
 
   .cs-tldr,
