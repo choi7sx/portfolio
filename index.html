@@ -459,6 +459,13 @@
       color: var(--color-electric-blue);
     }
 
+    .about-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-lg);
+    }
+
     /* Footer ----------------------------------------------------------- */
     .site-footer {
       display: flex;
@@ -533,8 +540,8 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .about .ph {
-        max-width: 240px;
+      .about-photo {
+        max-width: 320px;
       }
     }
   </style>
@@ -694,15 +701,7 @@
           <p>Today I&rsquo;m a Senior UX Designer and Product Owner at <a href="https://www.nature.org" target="_blank" rel="noopener noreferrer">The Nature Conservancy</a>, where I help shape nature.org and other products across the organization&rsquo;s digital ecosystem.</p>
           <p>Outside of work, you&rsquo;ll usually find me training Brazilian Jiu&#8209;Jitsu, reading science fiction, spending time with my family, or sweating through a sauna session.</p>
         </div>
-        <figure class="ph ph--tall">
-          <div class="ph-tile">
-            <span class="ph-label">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
-              Placeholder
-            </span>
-          </div>
-          <figcaption><strong>Image needed:</strong> a casual photo that isn&rsquo;t a headshot, for example outdoors, at a workshop, or with family.</figcaption>
-        </figure>
+        <img class="about-photo" src="/about-photo.jpg" width="640" height="800" loading="lazy" alt="Me with my family and our dog, sitting on hay bales outside at sunset.">
       </div>
     </section>
 
