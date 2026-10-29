@@ -11,6 +11,11 @@
   box-sizing: border-box;
 }
 
+/* Component display rules shouldn't override the hidden attribute */
+[hidden] {
+  display: none !important;
+}
+
 body {
   font: var(--type-lg);
   letter-spacing: var(--tracking-text);
@@ -98,32 +103,79 @@ hr {
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Bulleted lists ------------------------------------------------------- */
+/* Status chip ---------------------------------------------------------- */
 
-.case-list,
-.impact-list {
-  list-style: none;
-  margin-left: 0;
-  padding-left: 0;
+.cs-status {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-full);
+  background: var(--surface-canvas-gray);
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-deep-gray);
+}
+
+.cs-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-electric-blue);
+}
+
+.cs-status--progress::before {
+  background: var(--color-ember);
+}
+
+/* Placeholder image ------------------------------------------------------
+   Stands in for a visual that hasn't been supplied yet. The caption says
+   exactly which image belongs here. */
+
+.ph {
   display: flex;
   flex-direction: column;
+  gap: var(--space-12);
+}
+
+.ph-tile {
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-3xl);
+  background: var(--surface-canvas-gray);
+  border: 1px dashed var(--color-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ph--tall .ph-tile   { aspect-ratio: 4 / 5; }
+.ph--wide .ph-tile   { aspect-ratio: 21 / 9; }
+
+.ph-label {
+  display: inline-flex;
+  align-items: center;
   gap: var(--space-8);
-}
-
-.case-list li,
-.impact-list li {
-  font: var(--type-lg);
+  font: var(--type-sm);
   letter-spacing: var(--tracking-text);
-  color: var(--color-primary-ink);
-  margin-left: var(--space-16);
-  position: relative;
+  color: var(--color-mid-gray);
 }
 
-.case-list li::before,
-.impact-list li::before {
-  content: "\2022";
-  position: absolute;
-  left: calc(var(--space-12) * -1);
+.ph-label svg {
+  width: 18px;
+  height: 18px;
+}
+
+.ph figcaption {
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-mid-gray);
+  max-width: 680px;
+}
+
+.ph figcaption strong {
+  font-weight: 600;
   color: var(--color-deep-gray);
 }
 
@@ -145,5 +197,9 @@ hr {
   .profile-photo {
     width: 80px;
     height: 100px;
+  }
+
+  .ph-tile {
+    border-radius: var(--radius-lg);
   }
 }
