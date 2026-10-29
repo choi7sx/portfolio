@@ -11,13 +11,6 @@
   <link rel="stylesheet" href="../shared.css">
   <link rel="stylesheet" href="../case-study.css">
   <style>
-    /* Shared panel behind this page's diagrams */
-    .panel {
-      border-radius: var(--radius-3xl);
-      background: var(--surface-canvas-gray);
-      padding: var(--space-32);
-    }
-
     /* 59 of 60 dot grid ------------------------------------------------ */
     .dots {
       display: grid;
@@ -223,11 +216,6 @@
     }
 
     @media (max-width: 730px) {
-      .panel {
-        padding: var(--space-20);
-        border-radius: var(--radius-lg);
-      }
-
       .dots {
         grid-template-columns: repeat(12, 1fr);
         gap: var(--space-4);
@@ -403,7 +391,7 @@
           <p>Threespot&rsquo;s wireframes assumed every field would come from TNC&rsquo;s land management system. In practice, only some of it can be connected with the capacity we have.</p>
           <p>That isn&rsquo;t just a technical detail. Every field that can&rsquo;t be connected becomes content an author has to write and keep current, by hand, across hundreds of pages. So for each part of the page, I work out where its data will live, how that affects authors and visitors, and how the template needs to change because of it.</p>
         </div>
-        <div class="panel">
+        <div class="cs-panel">
           <div class="sources">
             <div class="source source--system">
               <div>
@@ -435,7 +423,7 @@
           <p>That changes next year, when TNC moves to a modern cloud version of our AEM platform. So these modules are designed to work now, and to get smarter after the upgrade without redesigning the template.</p>
           <p class="cs-decision-num">These decisions are still being finalized.</p>
         </div>
-        <div class="panel">
+        <div class="cs-panel">
           <div class="tradeoffs">
             <div class="tradeoff">
               <h4>Related stories</h4>

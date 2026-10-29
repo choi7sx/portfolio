@@ -325,6 +325,34 @@
   color: var(--color-mid-gray);
 }
 
+/* Diagram panel: gray stage behind diagrams built in HTML ------------- */
+
+.cs-panel {
+  border-radius: var(--radius-3xl);
+  background: var(--surface-canvas-gray);
+  padding: var(--space-32);
+}
+
+/* White cards that sit on a panel */
+.cs-card {
+  padding: var(--space-20) var(--space-24);
+  border-radius: var(--radius-lg);
+  background: var(--color-paper);
+}
+
+.cs-card h4 {
+  font: var(--type-lg-2);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-primary-ink);
+  margin-bottom: var(--space-4);
+}
+
+.cs-card p {
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-deep-gray);
+}
+
 /* Placeholder image ------------------------------------------------------
    Stands in for a visual that hasn't been supplied yet. The caption says
    exactly which image belongs here. */
@@ -500,6 +528,11 @@
   }
 
   .ph-tile {
+    border-radius: var(--radius-lg);
+  }
+
+  .cs-panel {
+    padding: var(--space-20);
     border-radius: var(--radius-lg);
   }
 }

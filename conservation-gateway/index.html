@@ -3,246 +3,414 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conservation Gateway Migration & Redesign — John Choi</title>
+  <title>Conservation Gateway — John Choi</title>
+  <meta name="description" content="Migrating and redesigning The Nature Conservancy's hub for conservation science: 5,000+ resources, a metadata-driven discovery model, and governance built into the design.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="../case-study.css">
   <style>
-    /* Page title */
-    h1 {
-      font: var(--type-3xl-2);
-      letter-spacing: var(--tracking-headline);
-      color: var(--color-primary-ink);
-    }
-
-    /* Case study sections */
-    .case-section {
+    /* Stacked cards on a diagram panel */
+    .stack {
       display: flex;
       flex-direction: column;
+      gap: var(--space-12);
+    }
+
+    /* Resource page anatomy -------------------------------------------- */
+    .anatomy {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-20);
+    }
+
+    .resource {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+      padding: var(--space-24);
+      border-radius: var(--radius-lg);
+      background: var(--color-paper);
+      box-shadow: 0 1px 2px rgba(29, 29, 31, 0.06);
+    }
+
+    .resource-kicker {
+      font: var(--type-xs-5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-mid-gray);
+    }
+
+    .field {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
       gap: var(--space-16);
-    }
-
-    .case-section h2 {
-      font: var(--type-xl-4);
-      letter-spacing: var(--tracking-display);
-      color: var(--color-primary-ink);
-    }
-
-    .case-section h3 {
-      font: var(--type-lg-2);
+      align-items: center;
+      font: var(--type-sm);
       letter-spacing: var(--tracking-text);
-      color: var(--color-primary-ink);
-      margin-top: var(--space-8);
+      color: var(--color-deep-gray);
     }
 
-    .case-section p {
-      font: var(--type-lg);
+    /* Grey bars stand in for the field's content */
+    .field i {
+      display: block;
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: var(--color-cool-wash);
+    }
+
+    .field--title i   { height: 12px; width: 70%; background: var(--color-hairline); }
+    .field--summary i { width: 95%; }
+    .field--type i    { width: 30%; background: rgba(0, 113, 227, 0.25); }
+    .field--extra i   { width: 55%; }
+
+    .powers {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-8);
+      font: var(--type-sm);
       letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
+    }
+
+    .powers b {
+      font: var(--type-sm-2);
       color: var(--color-primary-ink);
+      padding: var(--space-4) var(--space-12);
+      border-radius: var(--radius-full);
+      background: var(--color-paper);
+    }
+
+    .ways {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-8);
+    }
+
+    .ways span {
+      padding: var(--space-12) var(--space-16);
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--color-hairline);
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-deep-gray);
+      text-align: center;
+    }
+
+    .panel-label {
+      font: var(--type-xs-5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-mid-gray);
+    }
+
+    @media (max-width: 730px) {
+      .field {
+        grid-template-columns: 110px minmax(0, 1fr);
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <main class="cs">
 
-    <!-- Return Home -->
     <a href="/" class="return-home">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" aria-hidden="true">
         <path d="M12 7H2M2 7L7 2M2 7L7 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       Return Home
     </a>
 
-    <!-- Page Title -->
-    <h1>Conservation Gateway Migration &amp; Redesign</h1>
+    <!-- At a glance -->
+    <header class="cs-header">
+      <div class="cs-title">
+        <h1>Conservation Gateway</h1>
+        <p class="cs-tagline">5,000+ resources, finally findable</p>
+        <span class="cs-status">Shipped</span>
+      </div>
 
-    <!-- Overview -->
-    <section class="case-section">
-      <h2>Overview</h2>
-      <p>Conservation Gateway is The Nature Conservancy&rsquo;s centralized hub for conservation science, providing researchers, conservation practitioners, policymakers, and internal teams access to thousands of scientific resources, datasets, publications, tools, and research materials.</p>
-      <p>When I became involved with the project, the platform had accumulated years of technical debt, governance challenges, and usability issues. The site contained over 5,000 research assets, but much of the experience had become difficult to maintain, difficult to navigate, and difficult to evolve. Previous migration efforts had struggled because the challenge was larger than moving content into a new platform.</p>
-      <p>The real problem wasn&rsquo;t the website.</p>
-      <p>The real problem was creating a sustainable system capable of supporting conservation science for years to come.</p>
-      <p>My role focused on helping bridge strategy, UX, governance, technical feasibility, and implementation planning while supporting the migration of the platform into Adobe Experience Manager (AEM). I also helped hire and onboard a dedicated UX designer who would continue evolving the platform after launch.</p>
+      <dl class="cs-meta">
+        <div>
+          <dt>Role</dt>
+          <dd>Senior UX Designer</dd>
+        </div>
+        <div>
+          <dt>Scope</dt>
+          <dd>Information architecture, search and discovery, governance, feasibility, implementation</dd>
+        </div>
+        <div>
+          <dt>Team</dt>
+          <dd>Research agency, product owners, developers, release teams, a UX designer I hired, and me</dd>
+        </div>
+        <div>
+          <dt>Platform</dt>
+          <dd>Adobe Experience Manager (AEM)</dd>
+        </div>
+      </dl>
+
+      <ol class="cs-tldr">
+        <li>Helped launch a redesigned Conservation Gateway on AEM, after earlier migration attempts had failed.</li>
+        <li>Helped shape a metadata&#8209;driven model that turns 5,000+ research resources into structured, searchable pages.</li>
+        <li>Made governance part of the design, and hired and mentored the UX designer who now carries the platform forward.</li>
+      </ol>
+    </header>
+
+    <figure class="ph">
+      <div class="ph-tile">
+        <span class="ph-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
+          Placeholder
+        </span>
+      </div>
+      <figcaption><strong>Image needed:</strong> the redesigned Conservation Gateway, desktop and mobile side by side. Ideally the resource library with search and filters visible.</figcaption>
+    </figure>
+
+    <!-- Core question -->
+    <p class="cs-statement">The real problem wasn&rsquo;t the website. It was building a system that could support conservation science for years to come.</p>
+
+    <!-- Challenge -->
+    <section class="cs-section">
+      <h2 class="cs-label">The challenge</h2>
+      <div class="cs-body">
+        <p>Conservation Gateway is The Nature Conservancy&rsquo;s hub for conservation science. Researchers, practitioners, policymakers, and internal teams use it to find publications, datasets, tools, and methods.</p>
+        <p>By the time I joined, it held more than 5,000 resources and years of technical debt. Some sections were maintained by individual business units; others had been neglected. There was no clear ownership model, and earlier migration attempts had failed because of the scale. Before redesigning anything, the team had to answer harder questions:</p>
+        <div class="cs-columns">
+          <div>
+            <h3>For the organization</h3>
+            <ul class="cs-list">
+              <li>Who governs the platform, and who maintains and improves it?</li>
+              <li>How do we migrate future sites and collections into it?</li>
+              <li>How do we avoid repeating past mistakes?</li>
+            </ul>
+          </div>
+          <div>
+            <h3>For users</h3>
+            <ul class="cs-list">
+              <li>Information was hard to discover, and navigation was hard to follow.</li>
+              <li>Taxonomies were inconsistent and search was limited.</li>
+              <li>Content lacked clear paths to conservation action.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <hr>
+    <figure class="ph ph--wide">
+      <div class="ph-tile">
+        <span class="ph-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
+          Placeholder
+        </span>
+      </div>
+      <figcaption><strong>Image needed:</strong> the legacy Conservation Gateway next to the redesigned version, same page type, full&#8209;page screenshots.</figcaption>
+    </figure>
 
-    <!-- The Challenge -->
-    <section class="case-section">
-      <h2>The Challenge</h2>
-      <p>The original Conservation Gateway had become a valuable but increasingly difficult platform to manage.</p>
-      <p>Some sections were actively maintained by individual business units, while other areas had been largely neglected. There was no clear long-term ownership model, governance structure, or sustainable process for ongoing improvement.</p>
-      <p>The project had failed multiple times before because of its scale.</p>
-      <p>The platform contained more than 5,000 resources and represented years of accumulated conservation knowledge. At the same time, stakeholders wanted the platform to become the long-term destination for conservation science across the organization.</p>
-      <p>The challenge extended beyond user experience. The team needed to answer foundational questions:</p>
-      <ul class="case-list">
-        <li>Who would govern the platform?</li>
-        <li>Who would maintain and improve it over time?</li>
-        <li>How should thousands of resources be organized?</li>
-        <li>How could users find relevant information quickly?</li>
-        <li>How could future sites and content collections be migrated into the system?</li>
-        <li>How could we create a sustainable foundation rather than repeating past mistakes?</li>
-      </ul>
-      <p>Research also surfaced several experience challenges:</p>
-      <ul class="case-list">
-        <li>Users struggled to discover information.</li>
-        <li>Navigation structures were difficult to understand.</li>
-        <li>Existing taxonomies were inconsistent.</li>
-        <li>Search capabilities were limited.</li>
-        <li>Content lacked clear pathways connecting information to conservation action.</li>
-        <li>Stakeholders needed better guidance around publishing, site ownership, and governance.</li>
-      </ul>
+    <!-- Role -->
+    <section class="cs-section">
+      <h2 class="cs-label">My role</h2>
+      <div class="cs-body">
+        <p>My title was Senior UX Designer, but because the project had stalled for years over ownership and scale, my role reached into platform strategy, stakeholder alignment, feasibility, and implementation planning.</p>
+        <p>I stayed hands&#8209;on with the UX: information architecture, wireframes, new features and custom components, enhancements to existing AEM components, and the search and filtering experience. After the agency finished its research and recommendations, I worked with product owners, developers, and release teams to judge feasibility, set priorities, write Jira stories, and get the work into production.</p>
+        <p>As the project grew, I hired and onboarded a dedicated UX designer for the platform, then shifted into an advisor and mentor role so they could own its next chapter.</p>
+        <ul class="cs-chips">
+          <li>Information architecture</li>
+          <li>Taxonomy</li>
+          <li>Search and filtering</li>
+          <li>Custom AEM components</li>
+          <li>Feasibility</li>
+          <li>Jira stories and release planning</li>
+          <li>Governance strategy</li>
+          <li>Hiring and mentoring</li>
+        </ul>
+      </div>
     </section>
 
-    <hr>
-
-    <!-- My Role -->
-    <section class="case-section">
-      <h2>My Role</h2>
-      <p><strong>Senior UX Designer</strong></p>
-      <p>While my title was Senior UX Designer, my role extended well beyond designing screens and features. Because the project had struggled for years due to unclear ownership, governance challenges, and the complexity of migrating thousands of research resources, I became heavily involved in conversations around platform strategy, stakeholder alignment, technical feasibility, implementation planning, and long-term sustainability.</p>
-      <p>At the same time, I remained actively involved in the UX work itself. I helped shape the platform&rsquo;s information architecture, reviewed and refined wireframes, designed new features and custom components, enhanced existing AEM components, and contributed to the search, filtering, and resource discovery experience. A significant portion of my work focused on translating research findings and stakeholder needs into practical solutions that could be implemented within the constraints of AEM and our development capacity.</p>
-      <p>I also served as a bridge between discovery and implementation. After the agency completed its research and recommendation phase, I worked closely with product owners, developers, and release teams to evaluate feasibility, define priorities, create Jira stories, and help move the work into production.</p>
-      <p>As the project grew, I helped hire and onboard a dedicated UX designer to focus on Conservation Gateway. My role evolved into a combination of contributor, advisor, and mentor, helping provide historical context, strategic guidance, and support while creating space for the designer to take ownership of the platform&rsquo;s continued evolution.</p>
-
-      <h3>Responsibilities</h3>
-      <ul class="case-list">
-        <li>Designed new platform features and custom components</li>
-        <li>Enhanced existing AEM components and authoring experiences</li>
-        <li>Contributed to information architecture, taxonomy, and resource organization</li>
-        <li>Helped shape search, filtering, and content discovery experiences</li>
-        <li>Reviewed and refined agency wireframes and recommendations</li>
-        <li>Assessed technical feasibility and implementation constraints</li>
-        <li>Created Jira stories and supported release planning</li>
-        <li>Helped define governance and sustainability strategies</li>
-        <li>Partnered with product owners, developers, and stakeholders throughout implementation</li>
-        <li>Hired, onboarded, and mentored the dedicated UX designer assigned to the platform</li>
-      </ul>
+    <!-- Research -->
+    <section class="cs-section">
+      <h2 class="cs-label">Research</h2>
+      <div class="cs-body">
+        <ul class="cs-chips">
+          <li>Stakeholder interviews</li>
+          <li>Existing research review</li>
+          <li>Website audits</li>
+          <li>Landscape analysis</li>
+          <li>User testing</li>
+          <li>Tree testing and taxonomy validation</li>
+          <li>Search feasibility research</li>
+        </ul>
+        <ol class="cs-principles">
+          <li>
+            <p><strong>A central hub was worth building</strong>Teams across the organization needed one place to store, share, and find research, publications, methods, and tools.</p>
+          </li>
+          <li>
+            <p><strong>People search in different ways</strong>Some start with geography, others with a conservation topic, a scientific discipline, or a resource type. A rigid site structure couldn&rsquo;t serve all of them.</p>
+          </li>
+          <li>
+            <p><strong>Governance was a UX problem</strong>Stakeholders kept raising ownership, publishing, and maintenance. Without solving those, any redesign would end up like the old site.</p>
+          </li>
+        </ol>
+      </div>
     </section>
 
-    <hr>
+    <figure class="ph ph--wide">
+      <div class="ph-tile">
+        <span class="ph-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
+          Placeholder
+        </span>
+      </div>
+      <figcaption><strong>Image needed:</strong> the information architecture or taxonomy diagram, ideally the version validated in tree testing, showing top&#8209;level categories and how resources are tagged.</figcaption>
+    </figure>
 
-    <!-- Research & Discovery -->
-    <section class="case-section">
-      <h2>Research &amp; Discovery</h2>
-      <p>The discovery effort included:</p>
-      <ul class="case-list">
-        <li>Stakeholder interviews</li>
-        <li>Existing research review</li>
-        <li>Website audits</li>
-        <li>Landscape analysis</li>
-        <li>User testing</li>
-        <li>Tree testing and taxonomy validation</li>
-        <li>Search feasibility research</li>
-      </ul>
-      <p>Several themes emerged consistently.</p>
+    <!-- Key decisions -->
+    <div class="cs-decisions">
+      <div class="cs-decision">
+        <div class="cs-decision-text">
+          <span class="cs-decision-num">Decision 01</span>
+          <h3>Make every resource structured data</h3>
+          <p>Instead of thousands of one&#8209;off pages, each resource gets its own structured page built on metadata: title, summary, content type, and supporting information.</p>
+          <p>That metadata is what powers aggregation, filtering, and search, and it&rsquo;s what lets one resource be found from many directions.</p>
+        </div>
+        <div class="cs-panel anatomy" role="img" aria-label="Diagram: a resource page made of title, summary, content type, and supporting information. That metadata powers aggregation, filtering, and search, across geography, topic, discipline, and resource type.">
+          <div class="resource">
+            <span class="resource-kicker">Resource page</span>
+            <div class="field field--title"><span>Title</span><i></i></div>
+            <div class="field field--summary"><span>Summary</span><i></i></div>
+            <div class="field field--type"><span>Content type</span><i></i></div>
+            <div class="field field--extra"><span>Supporting information</span><i></i></div>
+          </div>
+          <div class="powers">Powers <b>Aggregation</b> <b>Filtering</b> <b>Search</b></div>
+          <span class="panel-label">Ways in</span>
+          <div class="ways">
+            <span>Geography</span>
+            <span>Conservation topic</span>
+            <span>Scientific discipline</span>
+            <span>Resource type</span>
+          </div>
+        </div>
+      </div>
 
-      <h3>A Centralized Knowledge Hub Was Needed</h3>
-      <p>Stakeholders across the organization agreed there was significant value in creating a centralized location for conservation science.</p>
-      <p>Teams needed a place to store, share, discover, and reference research resources, scientific publications, conservation methodologies, and supporting tools.</p>
+      <div class="cs-decision">
+        <div class="cs-decision-text">
+          <span class="cs-decision-num">Decision 02</span>
+          <h3>Build the governance, not just the site</h3>
+          <p>Earlier efforts focused on moving content. This time, governance was part of the design: who owns what, how authors publish, and how the platform is maintained after launch.</p>
+          <p>The redesign shipped with directory governance standards, authoring guidance, site governance documentation, content organization frameworks, maintenance processes, and a long&#8209;term migration plan.</p>
+        </div>
+        <figure class="ph ph--tall">
+          <div class="ph-tile">
+            <span class="ph-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
+              Placeholder
+            </span>
+          </div>
+          <figcaption><strong>Image needed:</strong> a governance artifact, for example a page of the authoring guidance or an overview of the ownership model.</figcaption>
+        </figure>
+      </div>
 
-      <h3>Search and Discovery Were Core User Needs</h3>
-      <p>Users approached content in different ways. Some searched by geography. Others searched by conservation topic. Others searched by specific scientific disciplines or resource types.</p>
-      <p>Effective discovery required flexible search pathways supported by a scalable taxonomy system rather than a rigid site structure.</p>
-
-      <h3>Governance Was a UX Problem</h3>
-      <p>One of the most important findings wasn&rsquo;t related to interface design.</p>
-      <p>Stakeholders repeatedly highlighted challenges around content ownership, publishing processes, maintenance responsibilities, and website governance.</p>
-      <p>Without solving those challenges, any redesign would eventually face the same problems as the legacy platform.</p>
-    </section>
-
-    <hr>
-
-    <!-- Strategy -->
-    <section class="case-section">
-      <h2>Strategy</h2>
-      <p>The redesign was guided by three strategic principles.</p>
-
-      <h3>1. Build a Sustainable Foundation</h3>
-      <p>Previous migration efforts focused primarily on moving content. This initiative focused on creating a system that could be maintained, governed, and improved over time.</p>
-      <p>Governance became a core consideration rather than an afterthought.</p>
-
-      <h3>2. Improve Discovery Through Information Architecture and Taxonomy</h3>
-      <p>With thousands of resources spanning numerous topics, disciplines, and content types, effective discovery required more than navigation updates.</p>
-      <p>The platform needed a scalable taxonomy model that could support filtering, search, metadata, future migrations, and growing content libraries.</p>
-
-      <h3>3. Design for Future Growth</h3>
-      <p>The platform wasn&rsquo;t being built solely for its existing 5,000 resources. Future plans included migrating more than 150 conservation-related sites into the ecosystem over time.</p>
-      <p>Every architecture, governance, and search decision needed to support both present and future needs.</p>
-    </section>
-
-    <hr>
+      <div class="cs-decision">
+        <div class="cs-decision-text">
+          <span class="cs-decision-num">Decision 03</span>
+          <h3>One platform, two very different audiences</h3>
+          <p>Nature.org is built for storytelling, engagement, and fundraising. Conservation Gateway serves researchers, practitioners, and policy leaders looking for specialized resources. Both run on the same AEM platform, with the same components, developers, and release process.</p>
+          <p>For each need, I had to decide how to adapt shared components without breaking either site, and whether the value was worth the long&#8209;term cost of maintaining something custom.</p>
+        </div>
+        <div class="cs-panel">
+          <div class="stack">
+            <div class="cs-card">
+              <h4>Modify an existing component</h4>
+              <p>Cheapest to maintain, but every change has to work for nature.org too.</p>
+            </div>
+            <div class="cs-card">
+              <h4>Create a new variation</h4>
+              <p>Fits research use cases better, and adds one more thing to maintain.</p>
+            </div>
+            <div class="cs-card">
+              <h4>Design around the constraint</h4>
+              <p>No new build at all, when the custom version wasn&rsquo;t worth the investment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Solution -->
-    <section class="case-section">
-      <h2>Solution</h2>
-      <p>The final solution established Conservation Gateway as a scalable AEM-based platform for conservation science.</p>
-
-      <h3>Resource Aggregation System</h3>
-      <p>One of the most significant features was the development of a resource aggregation framework.</p>
-      <p>Each resource receives its own structured page built around metadata including title, summary, content type, and supporting information. This metadata powers aggregation, filtering, and search experiences, making it easier for users to discover relevant content across thousands of resources.</p>
-
-      <h3>Search &amp; Discovery Improvements</h3>
-      <p>The team modernized the search strategy and laid the groundwork for more advanced discovery capabilities.</p>
-      <p>This included:</p>
-      <ul class="case-list">
-        <li>Improved filtering structures</li>
-        <li>Enhanced taxonomy models</li>
-        <li>Metadata-driven resource organization</li>
-        <li>Future CloudSearch implementation</li>
-        <li>Support for expanded search capabilities and multi-layer filtering experiences</li>
-      </ul>
-
-      <h3>Governance &amp; Platform Foundations</h3>
-      <p>The redesign also established:</p>
-      <ul class="case-list">
-        <li>Directory governance standards</li>
-        <li>Authoring guidance</li>
-        <li>Site governance documentation</li>
-        <li>Content organization frameworks</li>
-        <li>Sustainable maintenance processes</li>
-        <li>Long-term migration planning</li>
-      </ul>
+    <section class="cs-section">
+      <h2 class="cs-label">The solution</h2>
+      <div class="cs-body">
+        <p>Conservation Gateway relaunched as a scalable AEM platform for conservation science, with the groundwork for more advanced discovery:</p>
+        <ul class="cs-list">
+          <li>Improved filtering structures and taxonomy models.</li>
+          <li>Metadata&#8209;driven resource organization.</li>
+          <li>Support for expanded search and multi&#8209;layer filtering, with a future CloudSearch implementation.</li>
+        </ul>
+      </div>
     </section>
 
-    <hr>
+    <figure class="ph ph--wide">
+      <div class="ph-tile">
+        <span class="ph-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
+          Placeholder
+        </span>
+      </div>
+      <figcaption><strong>Image needed:</strong> search results with filters applied, showing how a user narrows thousands of resources down to a few.</figcaption>
+    </figure>
 
     <!-- Impact -->
-    <section class="case-section">
-      <h2>Impact</h2>
-
-      <h3>Organizational Impact</h3>
-      <ul class="case-list">
-        <li>Successfully launched a redesigned Conservation Gateway platform built within AEM.</li>
-        <li>Helped transform a previously unmanaged resource site into a sustainable platform with stronger governance and operational foundations.</li>
-        <li>Established a framework capable of supporting more than 5,000 conservation science resources.</li>
-        <li>Created a foundation for future migration efforts involving more than 150 conservation-related sites.</li>
-        <li>Helped align stakeholders around a shared vision for the future of conservation science publishing and discovery.</li>
-      </ul>
-
-      <h3>User Experience Impact</h3>
-      <ul class="case-list">
-        <li>Improved discoverability through search, filtering, and metadata-driven experiences.</li>
-        <li>Established a scalable taxonomy framework for organizing scientific content.</li>
-        <li>Reduced reliance on rigid navigation structures by supporting multiple pathways into content.</li>
-        <li>Improved the foundation for future resource discovery, research exploration, and conservation knowledge sharing.</li>
-      </ul>
+    <section class="cs-section">
+      <h2 class="cs-label">Impact</h2>
+      <div class="cs-body">
+        <div class="cs-stats cs-stats--large">
+          <div>
+            <span class="cs-stat-value">5,000+</span>
+            <span class="cs-stat-label">Conservation science resources supported</span>
+          </div>
+          <div>
+            <span class="cs-stat-value">150+</span>
+            <span class="cs-stat-label">Conservation sites planned to migrate in</span>
+          </div>
+        </div>
+        <div class="cs-columns">
+          <div>
+            <h3>For the organization</h3>
+            <ul class="cs-list">
+              <li>Launched a redesigned platform on AEM.</li>
+              <li>Turned an unmanaged resource site into a governed one.</li>
+              <li>Aligned stakeholders on a shared vision for publishing and discovering conservation science.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>For users</h3>
+            <ul class="cs-list">
+              <li>Better discovery through search, filtering, and metadata.</li>
+              <li>A scalable taxonomy for scientific content.</li>
+              <li>Many pathways into content, not one rigid navigation.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
-
-    <hr>
 
     <!-- Reflection -->
-    <section class="case-section">
-      <h2>Reflection</h2>
-      <p>One of the most interesting challenges throughout this project was that Conservation Gateway needed to behave very differently from nature.org while still operating within many of the same organizational and technical constraints.</p>
-      <p>Nature.org is primarily designed to support storytelling, engagement, and fundraising. Conservation Gateway serves a fundamentally different audience. Researchers, conservation practitioners, analysts, and policy leaders visit the platform looking for scientific resources, tools, datasets, publications, and specialized information. Their needs, behaviors, and expectations differ significantly from those of a typical nature.org visitor.</p>
-      <p>Despite those differences, both products share the same AEM platform, many of the same underlying components, development resources, and release processes. Building an experience optimized for research and discovery often required us to rethink how existing components could be adapted to support entirely different use cases. In many cases, we needed to decide whether to modify an existing component, create a new variation, or design around platform constraints altogether.</p>
-      <p>Resource limitations also influenced many design decisions. While we were eventually able to secure additional support, including a dedicated UX designer and development resources, the project never operated with a fully dedicated product team. Conservation Gateway continued to share release capacity with other organizational priorities, requiring us to make careful decisions about where custom functionality provided enough value to justify the additional investment.</p>
-      <p>This experience reinforced an important lesson for me: successful digital products are rarely shaped by user needs alone. They are also shaped by platform constraints, organizational realities, shared infrastructure, available resources, and the long-term cost of maintaining what gets built. Some of the most important decisions on this project were not about what we wanted to design, but about how to create the best possible experience within those constraints while still preserving a vision for future growth.</p>
+    <section class="cs-section">
+      <h2 class="cs-label">Reflection</h2>
+      <div class="cs-body">
+        <p>This project never had a fully dedicated product team. It shared release capacity with other priorities, so every custom feature had to earn its place.</p>
+        <p>It taught me that good digital products aren&rsquo;t shaped by user needs alone. They&rsquo;re also shaped by platform constraints, shared infrastructure, available resources, and the long&#8209;term cost of maintaining what gets built. Some of the most important decisions weren&rsquo;t about what we wanted to design, but about creating the best experience within those limits while keeping a vision for growth.</p>
+      </div>
     </section>
 
-  </div>
+    <a href="/tnc-email/" class="cs-next">
+      <span class="cs-next-label">Next case study</span>
+      <span class="cs-next-title">
+        TNC Email Ecosystem
+        <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14h20M16 6l8 8-8 8"/></svg>
+      </span>
+    </a>
+
+  </main>
 </body>
 </html>
