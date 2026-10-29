@@ -248,6 +248,20 @@
       }
     }
 
+    /* Real screenshot thumbnails */
+    .work-thumb--image {
+      background: var(--color-paper);
+      box-shadow: inset 0 0 0 1px var(--color-hairline);
+    }
+
+    .work-thumb--image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left top;
+    }
+
     /* Email: 13 templates become 9 */
     .mini-grid {
       display: grid;
@@ -290,29 +304,6 @@
       background: transparent;
       box-shadow: inset 0 0 0 1px var(--color-mid-gray);
     }
-
-    /* Gateway: a structured resource page */
-    .mini-resource {
-      width: 62%;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      padding: var(--space-12);
-      border-radius: 6px;
-      background: var(--color-paper);
-      box-shadow: 0 1px 2px rgba(29, 29, 31, 0.08);
-    }
-
-    .mini-resource i {
-      display: block;
-      height: 5px;
-      border-radius: var(--radius-full);
-      background: var(--color-cool-wash);
-    }
-
-    .mini-resource i:nth-child(1) { height: 7px; width: 70%; background: var(--color-hairline); }
-    .mini-resource i:nth-child(3) { width: 35%; background: rgba(0, 113, 227, 0.3); }
-    .mini-resource i:nth-child(4) { width: 55%; }
 
     /* More work -------------------------------------------------------- */
     .more-list {
@@ -526,6 +517,11 @@
         aspect-ratio: 16 / 9;
       }
 
+      /* The wider frame crops height; keep the checked filter in view */
+      .work-thumb--image img {
+        object-position: left 55%;
+      }
+
       .building {
         grid-template-columns: minmax(0, 1fr);
         gap: var(--space-20);
@@ -644,8 +640,8 @@
               <p class="work-summary">Helped migrate and redesign TNC&rsquo;s hub for conservation science, with metadata&#8209;driven discovery and governance built into the design.</p>
               <span class="work-meta">2025&ndash;Now &middot; Senior UX Designer <span class="cs-status">Launched</span></span>
             </div>
-            <div class="work-thumb" aria-hidden="true">
-              <div class="mini-resource"><i></i><i></i><i></i><i></i></div>
+            <div class="work-thumb work-thumb--image" aria-hidden="true">
+              <img src="/conservation-gateway/gateway-thumb.jpg" width="880" height="660" loading="lazy" alt="">
             </div>
           </a>
         </li>
