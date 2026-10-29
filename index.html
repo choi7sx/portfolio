@@ -290,6 +290,11 @@
       left: var(--space-12);
     }
 
+    .thumb-chip--bottom-right {
+      top: auto !important;
+      bottom: var(--space-12);
+    }
+
     .thumb-chip {
       position: absolute;
       top: var(--space-12);
@@ -301,24 +306,6 @@
       font: var(--type-xs-5);
       letter-spacing: var(--tracking-text);
       color: var(--color-primary-ink);
-    }
-
-    /* Preserves: 59 of 60 */
-    .mini-dots {
-      display: grid;
-      grid-template-columns: repeat(10, 8px);
-      gap: 5px;
-    }
-
-    .mini-dots span {
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: var(--color-primary-ink);
-    }
-
-    .mini-dots span:last-child {
-      background: transparent;
-      box-shadow: inset 0 0 0 1px var(--color-mid-gray);
     }
 
     /* More work -------------------------------------------------------- */
@@ -644,8 +631,12 @@
               <p class="work-summary">Taking an agency&rsquo;s wireframes to buildable, high&#8209;fidelity components, designed around which data can come from TNC&rsquo;s land management system.</p>
               <span class="work-meta">2026&ndash;Now &middot; Senior UX Designer and Product Owner <span class="cs-status cs-status--progress">In progress</span></span>
             </div>
-            <div class="work-thumb" aria-hidden="true">
-              <div class="mini-dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="work-thumb work-thumb--image" aria-hidden="true">
+              <picture>
+                <source media="(max-width: 730px)" srcset="/nature-preserves/preserves-thumb-m.jpg" width="1280" height="720">
+                <img src="/nature-preserves/preserves-thumb.jpg" width="880" height="660" loading="lazy" alt="">
+              </picture>
+              <span class="thumb-chip thumb-chip--bottom-right">~350 pages</span>
             </div>
           </a>
         </li>
