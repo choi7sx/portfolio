@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Science Knowledge Bank — John Choi</title>
+  <!-- Draft: remove noindex when this case study is published -->
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Leading the UX review of The Nature Conservancy's internal home for conservation-science knowledge.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="../case-study.css">
+  <style>
+    /* Knowledge ecosystem: one discovery layer over several source systems */
+    .ecosystem {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+    }
+
+    .eco-layer {
+      padding: var(--space-16) var(--space-20);
+      border: 1px dashed var(--color-mid-gray);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+
+    .eco-layer h4,
+    .eco-system h4 {
+      font: var(--type-lg-2);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-primary-ink);
+    }
+
+    .eco-layer p,
+    .eco-system p {
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-deep-gray);
+    }
+
+    .eco-systems {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: var(--space-8);
+    }
+
+    .eco-system {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      padding: var(--space-16);
+      border-radius: var(--radius-lg);
+      background: var(--color-paper);
+    }
+
+    .eco-system small {
+      margin-top: auto;
+      padding-top: var(--space-8);
+      font: var(--type-xs-5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-mid-gray);
+    }
+
+    .eco-system.is-focus {
+      box-shadow: inset 0 0 0 2px var(--color-electric-blue);
+    }
+
+    .eco-system.is-focus small {
+      color: var(--color-link-blue);
+    }
+
+    .eco-note {
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
+    }
+
+    .progress {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .progress li {
+      position: relative;
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr) auto;
+      gap: var(--space-16);
+      align-items: baseline;
+      padding: var(--space-12) 0;
+      font: var(--type-lg);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
+    }
+
+    /* Connecting line between steps */
+    .progress li:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: calc(var(--space-12) + 18px);
+      bottom: calc(var(--space-12) * -1 + 6px);
+      width: 2px;
+      background: var(--color-hairline);
+    }
+
+    .progress li::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 2px var(--color-hairline);
+      background: var(--color-paper);
+      transform: translateY(1px);
+    }
+
+    .progress .is-done {
+      color: var(--color-primary-ink);
+    }
+
+    .progress .is-done::before {
+      box-shadow: none;
+      background: var(--color-primary-ink);
+    }
+
+    .progress .is-current {
+      color: var(--color-primary-ink);
+      font-weight: 600;
+    }
+
+    .progress .is-current::before {
+      box-shadow: 0 0 0 4px rgba(182, 68, 0, 0.15);
+      background: var(--color-ember);
+    }
+
+    .progress small {
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
+    }
+
+
+    @media (max-width: 730px) {
+      .eco-systems {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .progress li {
+        grid-template-columns: 24px minmax(0, 1fr);
+        row-gap: 2px;
+      }
+
+      .progress small {
+        grid-column: 2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="cs">
+
+    <a href="/" class="return-home">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" aria-hidden="true">
+        <path d="M12 7H2M2 7L7 2M2 7L7 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Return Home
+    </a>
+
+    <!-- At a glance -->
+    <header class="cs-header">
+      <div class="cs-title">
+        <h1>Science Knowledge Bank</h1>
+        <p class="cs-tagline">Making conservation know&#8209;how findable inside TNC</p>
+        <span class="cs-status cs-status--progress">In progress</span>
+      </div>
+
+      <dl class="cs-meta">
+        <div>
+          <dt>Years</dt>
+          <dd>2026&ndash;Now</dd>
+        </div>
+        <div>
+          <dt>Role</dt>
+          <dd>Senior UX Designer, UX lead for the interface review</dd>
+        </div>
+        <div>
+          <dt>Scope</dt>
+          <dd>UX audit, information architecture, search, upload, metadata experience</dd>
+        </div>
+        <div>
+          <dt>Team</dt>
+          <dd>Project sponsor, project manager, knowledge management lead, SharePoint lead, IT, and me</dd>
+        </div>
+      </dl>
+
+      <div class="cs-outcomes">
+        <h2>What I&rsquo;m doing</h2>
+        <ol class="cs-tldr">
+          <li>Auditing the existing knowledge bank as a first&#8209;time user, to find where people get lost.</li>
+          <li>Recommending changes to search, navigation, and upload, including a substantially different interface where it&rsquo;s warranted.</li>
+          <li>Keeping SharePoint&rsquo;s complexity out of the way for casual users, so adoption doesn&rsquo;t stall.</li>
+        </ol>
+      </div>
+    </header>
+
+    <figure class="ph">
+      <div class="ph-tile">
+        <span class="ph-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
+          Placeholder
+        </span>
+      </div>
+      <figcaption><strong>Image needed:</strong> the current Science &amp; Conservation Knowledge Bank home page, full screen, as a first&#8209;time user sees it.</figcaption>
+    </figure>
+
+    <!-- Core question -->
+    <p class="cs-statement">Can a TNC scientist arrive, understand what this is, find the right knowledge, and contribute their own, without needing to know how SharePoint is built?</p>
+
+    <!-- Challenge -->
+    <section class="cs-section">
+      <h2 class="cs-label">The challenge</h2>
+      <div class="cs-body">
+        <p>TNC&rsquo;s internal science knowledge (methods, standard operating procedures, guidance, templates, survey instruments, and media) is spread across disconnected locations. Related work is hard to discover, institutional knowledge gets lost when people move on, and teams duplicate effort.</p>
+        <p>The goal is one authoritative internal home for finalized conservation&#8209;science knowledge: a place where someone can find a method, understand it, and reuse it instead of rebuilding it.</p>
+        <p>It isn&rsquo;t meant to replace the tools teams collaborate in day to day. Work in progress stays where it is; the knowledge bank is where approved, finished knowledge lives long term. That distinction shapes the whole experience: this shouldn&rsquo;t be designed as a better file share.</p>
+      </div>
+    </section>
+
+    <!-- Ecosystem -->
+    <section class="cs-section">
+      <h2 class="cs-label">Where it fits</h2>
+      <div class="cs-body">
+        <p>The knowledge bank is one of several systems in TNC&rsquo;s science ecosystem, each with a different job. Keeping their boundaries clear is part of the design work.</p>
+      </div>
+    </section>
+
+    <figure class="cs-panel ecosystem" aria-label="Diagram: a planned discovery layer connects five systems: the knowledge bank, Conservation Gateway, GeoCloud, Hub, and KoboToolbox.">
+      <div class="eco-layer">
+        <h4>A planned discovery layer</h4>
+        <p>One login, one search, and AI querying across systems, without moving their content</p>
+      </div>
+      <ul class="eco-systems">
+        <li class="eco-system is-focus"><h4>Knowledge bank</h4><p>Finalized internal methods, guidance, and tools</p><small>Internal &middot; my focus</small></li>
+        <li class="eco-system"><h4>Conservation Gateway</h4><p>Published science for the public</p><small>Public</small></li>
+        <li class="eco-system"><h4>GeoCloud</h4><p>Spatial data and maps</p><small>Internal</small></li>
+        <li class="eco-system"><h4>Hub</h4><p>Progress records for leadership decisions</p><small>Internal</small></li>
+        <li class="eco-system"><h4>KoboToolbox</h4><p>Field surveys and responses</p><small>Internal</small></li>
+      </ul>
+      <figcaption class="eco-note">The knowledge bank is a source system. Cross&#8209;system search belongs to the discovery layer above it, not to this project.</figcaption>
+    </figure>
+
+    <!-- Role -->
+    <section class="cs-section">
+      <h2 class="cs-label">My role</h2>
+      <div class="cs-body">
+        <p>The project team brought me in for UX. Platform selection, metadata, governance, and use&#8209;case work were already moving; what was missing was someone looking at the current knowledge bank without years of learned familiarity.</p>
+        <p>I proposed starting with a functional audit centered on purpose, users, workflows, and usability, rather than visual polish. The team agreed the current interface can be challenged, and that recommending a substantially different one is in scope, as long as it can be maintained.</p>
+        <ul class="cs-chips">
+          <li>New&#8209;user UX audit</li>
+          <li>Search and navigation</li>
+          <li>Upload and contribution</li>
+          <li>Information architecture</li>
+          <li>Metadata experience</li>
+          <li>Recommendations</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="cs-section">
+      <h2 class="cs-label">Approach</h2>
+      <div class="cs-body">
+        <ol class="cs-principles">
+          <li><p><strong>Can a first&#8209;time user tell what this is?</strong>Long&#8209;time users have learned the interface. A new user hasn&rsquo;t, and that&rsquo;s the experience most of the organization will have.</p></li>
+          <li><p><strong>Can they find something?</strong>Keyword search, metadata filters, browsing, and eventually AI&#8209;assisted search all need to lead somewhere useful.</p></li>
+          <li><p><strong>Can they contribute without becoming a SharePoint expert?</strong>Upload and tagging are where knowledge bases quietly fail. If contributing is hard, the content goes stale.</p></li>
+          <li><p><strong>Does the structure make sense across teams?</strong>Several earlier pilots now overlap in the same environment, each organized its own way.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <figure class="ph ph--wide">
+      <div class="ph-tile">
+        <span class="ph-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
+          Placeholder
+        </span>
+      </div>
+      <figcaption><strong>Image needed:</strong> audit findings on one board: annotated screenshots of the current home, search results, and upload flow, with the biggest usability gaps called out.</figcaption>
+    </figure>
+
+    <!-- Where it stands -->
+    <section class="cs-section">
+      <h2 class="cs-label">Where it stands</h2>
+      <div class="cs-body">
+        <ol class="progress">
+          <li class="is-done">Discovery and platform selection <small>Before I joined</small></li>
+          <li class="is-current">New&#8209;user UX audit <small>In progress</small></li>
+          <li>Recommendations for search, navigation, and upload</li>
+          <li>Foundational build and first team use cases</li>
+          <li>Launch and adoption</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Reflection placeholder -->
+    <section class="cs-section">
+      <h2 class="cs-label">Why it matters</h2>
+      <div class="cs-body">
+        <p>The project lists a difficult, unintuitive experience as a real risk to adoption across the organization. A knowledge bank only works if people trust it enough to look there first, and to put their own work there. That&rsquo;s the problem I&rsquo;m designing for.</p>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
