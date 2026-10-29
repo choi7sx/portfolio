@@ -248,18 +248,40 @@
       }
     }
 
-    /* Real screenshot thumbnails */
-    .work-thumb--image {
-      background: var(--color-paper);
-      box-shadow: inset 0 0 0 1px var(--color-hairline);
+    /* Phone thumbnail: a real mobile screen rising from the bottom edge */
+    .work-thumb--phone {
+      position: relative;
+      align-items: flex-end;
     }
 
-    .work-thumb--image img {
+    .thumb-phone {
+      width: 52%;
+      height: 86%;
+      padding: 5px 5px 0;
+      border-radius: 20px 20px 0 0;
+      background: var(--color-primary-ink);
+      box-shadow: 0 8px 24px rgba(29, 29, 31, 0.18);
+      overflow: hidden;
+    }
+
+    .thumb-phone img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: left top;
+      height: auto;
+      border-radius: 15px 15px 0 0;
+    }
+
+    .thumb-chip {
+      position: absolute;
+      top: var(--space-12);
+      right: var(--space-12);
+      padding: 3px var(--space-8);
+      border-radius: var(--radius-full);
+      background: var(--color-paper);
+      box-shadow: 0 1px 3px rgba(29, 29, 31, 0.12);
+      font: var(--type-xs-5);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-primary-ink);
     }
 
     /* Email: 13 templates become 9 */
@@ -517,9 +539,8 @@
         aspect-ratio: 16 / 9;
       }
 
-      /* The wider frame crops height; keep the checked filter in view */
-      .work-thumb--image img {
-        object-position: left 55%;
+      .thumb-phone {
+        width: 38%;
       }
 
       .building {
@@ -640,8 +661,11 @@
               <p class="work-summary">Helped migrate and redesign TNC&rsquo;s hub for conservation science, with metadata&#8209;driven discovery and governance built into the design.</p>
               <span class="work-meta">2025&ndash;Now &middot; Senior UX Designer <span class="cs-status">Launched</span></span>
             </div>
-            <div class="work-thumb work-thumb--image" aria-hidden="true">
-              <img src="/conservation-gateway/gateway-thumb.jpg" width="880" height="660" loading="lazy" alt="">
+            <div class="work-thumb work-thumb--phone" aria-hidden="true">
+              <div class="thumb-phone">
+                <img src="/conservation-gateway/gateway-thumb-mobile.jpg" width="780" height="1048" loading="lazy" alt="">
+              </div>
+              <span class="thumb-chip">2,073 &rarr; 6</span>
             </div>
           </a>
         </li>
