@@ -621,7 +621,7 @@
     </section>
 
     <footer class="site-footer">
-      <span>John Choi</span>
+      <span>John Choi &middot; Gallatin, TN<span class="local-time" hidden> &middot; <time></time> CT</span></span>
       <nav aria-label="Contact">
         <a href="mailto:choi7sx@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/johnsychoi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -631,6 +631,26 @@
   </div>
 
   <script>
+    // Live local time in the footer (Gallatin, TN runs on Central time)
+    (function () {
+      var wrap = document.querySelector('.local-time');
+      if (!wrap || !window.Intl) return;
+      var el = wrap.querySelector('time');
+      var fmt = new Intl.DateTimeFormat('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        timeZone: 'America/Chicago'
+      });
+
+      function tick() {
+        el.textContent = fmt.format(new Date());
+      }
+
+      tick();
+      wrap.hidden = false;
+      setInterval(tick, 30000);
+    })();
+
     (function () {
       var nav = document.querySelector('.nav-links');
       var bar = nav && nav.querySelector('.nav-bar');
