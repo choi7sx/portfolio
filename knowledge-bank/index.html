@@ -74,6 +74,40 @@
       color: var(--color-link-blue);
     }
 
+    /* Six Box framework: six questions as a 3x2 grid of boxes */
+    .six-box {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-8);
+      margin: var(--space-8) 0;
+      counter-reset: box;
+    }
+
+    .six-box li {
+      counter-increment: box;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      padding: var(--space-20);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+      font: var(--type-lg-2);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-primary-ink);
+    }
+
+    .six-box li::before {
+      content: counter(box);
+      font: var(--type-sm-2);
+      color: var(--color-link-blue);
+    }
+
+    .six-box-note {
+      font: var(--type-sm) !important;
+      color: var(--color-mid-gray) !important;
+    }
+
     .eco-note {
       font: var(--type-sm);
       letter-spacing: var(--tracking-text);
@@ -148,6 +182,10 @@
     @media (max-width: 730px) {
       .eco-systems {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .six-box {
+        grid-template-columns: minmax(0, 1fr);
       }
 
       .progress li {
@@ -276,12 +314,16 @@
     <section class="cs-section">
       <h2 class="cs-label">Approach</h2>
       <div class="cs-body">
-        <ol class="cs-principles">
-          <li><p><strong>Can a first&#8209;time user tell what this is?</strong>Long&#8209;time users have learned the interface. A new user hasn&rsquo;t, and that&rsquo;s the experience most of the organization will have.</p></li>
-          <li><p><strong>Can they find something?</strong>Keyword search, metadata filters, browsing, and eventually AI&#8209;assisted search all need to lead somewhere useful.</p></li>
-          <li><p><strong>Can they contribute without becoming a SharePoint expert?</strong>Upload and tagging are where knowledge bases quietly fail. If contributing is hard, the content goes stale.</p></li>
-          <li><p><strong>Does the structure make sense across teams?</strong>Several earlier pilots now overlap in the same environment, each organized its own way.</p></li>
+        <p>I&rsquo;m running the audit through a Six Box framework: six questions that every page, section, or site should be able to answer. Where the current knowledge bank can&rsquo;t answer one clearly, that&rsquo;s a gap to fix.</p>
+        <ol class="six-box">
+          <li>Who is the primary audience?</li>
+          <li>What job does the primary audience need done?</li>
+          <li>What is the organization&rsquo;s goal for this page, section, or site?</li>
+          <li>How will the primary audience reach it?</li>
+          <li>What messaging will be provided to the primary audience?</li>
+          <li>Where will the primary audience go, or what will they do, after visiting?</li>
         </ol>
+        <p class="six-box-note">First&#8209;pass findings are in discussion with the project team.</p>
       </div>
     </section>
 
@@ -292,7 +334,7 @@
           Placeholder
         </span>
       </div>
-      <figcaption><strong>Image needed:</strong> audit findings on one board: annotated screenshots of the current home, search results, and upload flow, with the biggest usability gaps called out.</figcaption>
+      <figcaption><strong>Image needed:</strong> Six Box findings for the current knowledge bank: annotated screenshots of the home, search results, and upload flow, each tied to the question it fails or answers.</figcaption>
     </figure>
 
     <!-- Where it stands -->
