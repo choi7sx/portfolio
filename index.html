@@ -489,14 +489,21 @@
 
     /* Mobile Responsive */
     @media (max-width: 730px) {
-      /* The four links can't fit one row at this width, so lay them out
-         as a balanced 2x2 instead of letting them wrap 3+1 */
+      /* Keep all four links in one compact row. Each link fills the bar's
+         full height so the tap target is 44px tall, not just the text */
       .nav-bar {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--space-8) var(--space-16);
-        padding: var(--space-16) var(--space-20);
-        /* A squircle reads better than a stadium at two rows tall */
-        border-radius: var(--radius-3xl);
+        grid-template-columns: repeat(4, auto);
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 0;
+        padding: 0 var(--space-8);
+      }
+
+      .nav-bar a {
+        min-height: 44px;
+        padding: 0 var(--space-8);
+        font: var(--type-sm-2);
+        letter-spacing: var(--tracking-text);
       }
 
       .thesis {
