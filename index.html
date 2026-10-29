@@ -284,31 +284,6 @@
       color: var(--color-primary-ink);
     }
 
-    /* Email: 13 templates become 9 */
-    .mini-grid {
-      display: grid;
-      gap: 4px;
-    }
-
-    .mini-grid--before { grid-template-columns: repeat(5, 12px); }
-    .mini-grid--after  { grid-template-columns: repeat(3, 16px); }
-
-    .mini-grid span {
-      aspect-ratio: 3 / 4;
-      border-radius: 2px;
-      background: var(--color-paper);
-      border-top: 3px solid var(--color-hairline);
-    }
-
-    .mini-grid--before span:nth-child(3n) { border-top-color: var(--color-mid-gray); }
-    .mini-grid--after span { border-top-color: var(--color-primary-ink); }
-
-    .mini-arrow {
-      width: 16px;
-      height: 16px;
-      color: var(--color-mid-gray);
-    }
-
     /* Preserves: 59 of 60 */
     .mini-dots {
       display: grid;
@@ -633,10 +608,11 @@
               <p class="work-summary">Consolidated 13 email templates into 9 on one shared component system, so a four&#8209;person team can support more than 100 business units.</p>
               <span class="work-meta">2026 &middot; Senior UX Designer <span class="cs-status">Shipped</span></span>
             </div>
-            <div class="work-thumb" aria-hidden="true">
-              <div class="mini-grid mini-grid--before"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-              <svg class="mini-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
-              <div class="mini-grid mini-grid--after"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="work-thumb work-thumb--phone" aria-hidden="true">
+              <div class="thumb-phone">
+                <img src="/tnc-email/email-thumb-mobile.jpg" width="393" height="528" loading="lazy" alt="">
+              </div>
+              <span class="thumb-chip">13 &rarr; 9</span>
             </div>
           </a>
         </li>
