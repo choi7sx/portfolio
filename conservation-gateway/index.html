@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Conservation Gateway — John Choi</title>
   <meta name="description" content="Migrating and redesigning The Nature Conservancy's hub for conservation science: 5,000+ resources, a metadata-driven discovery model, and governance built into the design.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="John Choi">
+  <meta property="og:title" content="Conservation Gateway — John Choi">
+  <meta property="og:description" content="Migrating and redesigning The Nature Conservancy's hub for conservation science: 5,000+ resources, a metadata-driven discovery model, and governance built into the design.">
+  <meta property="og:url" content="https://www.suyoungchoi.com/conservation-gateway/">
+  <meta property="og:image" content="https://www.suyoungchoi.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -104,6 +113,192 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--color-mid-gray);
+    }
+
+
+    /* Filter demo ---------------------------------------------------------
+       Built by JS; stays hidden without it. Sample data only. */
+    .filter-demo {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-20);
+    }
+
+    .fd-head h3 {
+      font: var(--type-xl-4);
+      letter-spacing: var(--tracking-display);
+      color: var(--color-primary-ink);
+      margin-bottom: var(--space-4);
+    }
+
+    .fd-head p,
+    .filter-demo figcaption {
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
+    }
+
+    .fd-facets {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-12);
+    }
+
+    .fd-group {
+      display: grid;
+      grid-template-columns: 110px minmax(0, 1fr);
+      gap: var(--space-12);
+      align-items: center;
+    }
+
+    .fd-group-label {
+      font: var(--type-xs-5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-mid-gray);
+    }
+
+    .fd-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-8);
+    }
+
+    .fd-chip,
+    .fd-clear {
+      appearance: none;
+      padding: 6px var(--space-12);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-full);
+      background: var(--color-paper);
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-deep-gray);
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .fd-chip:hover {
+      border-color: var(--color-mid-gray);
+    }
+
+    .fd-chip[aria-pressed="true"] {
+      background: var(--color-primary-ink);
+      border-color: var(--color-primary-ink);
+      color: var(--color-paper);
+    }
+
+    .fd-chip:focus-visible,
+    .fd-clear:focus-visible {
+      outline: 2px solid var(--color-electric-blue);
+      outline-offset: 2px;
+    }
+
+    .fd-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-12);
+      font: var(--type-sm-2);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-primary-ink);
+    }
+
+    .fd-clear {
+      border-color: transparent;
+      background: transparent;
+      color: var(--color-link-blue);
+    }
+
+    .fd-clear:disabled {
+      color: var(--color-mid-gray);
+      cursor: default;
+    }
+
+    .fd-grid {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: var(--space-12);
+    }
+
+    .fd-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      padding: var(--space-12);
+      border-radius: var(--radius-lg);
+      background: var(--color-paper);
+      animation: fd-in 0.25s ease both;
+    }
+
+    @keyframes fd-in {
+      from { opacity: 0; transform: translateY(4px); }
+    }
+
+    .fd-type {
+      font: var(--type-xs-5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-link-blue);
+    }
+
+    .fd-card i {
+      display: block;
+      height: 7px;
+      border-radius: var(--radius-full);
+      background: var(--color-hairline);
+    }
+
+    .fd-card i + i {
+      width: 70%;
+      height: 5px;
+      background: var(--color-cool-wash);
+    }
+
+    .fd-tags {
+      font: var(--type-xs-4);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
+    }
+
+    .fd-more {
+      grid-column: 1 / -1;
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
+    }
+
+    .fd-empty {
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-deep-gray);
+      padding: var(--space-20) 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fd-card {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .fd-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .fd-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 730px) {
+      .fd-group {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-8);
+      }
     }
 
     @media (max-width: 730px) {
@@ -349,6 +544,21 @@
       </div>
     </section>
 
+    <figure class="cs-panel filter-demo" hidden>
+      <div class="fd-head">
+        <h3>Try it: many ways into the same library</h3>
+        <p>Pick any combination. Filters within a group widen the results; filters across groups narrow them.</p>
+      </div>
+      <div class="fd-facets"></div>
+      <div class="fd-status">
+        <span class="fd-count" aria-live="polite"></span>
+        <button type="button" class="fd-clear" disabled>Clear filters</button>
+      </div>
+      <ul class="fd-grid"></ul>
+      <p class="fd-empty" hidden>No resources match. Try removing a filter.</p>
+      <figcaption>Illustrative demo with sample data, not real Conservation Gateway resources.</figcaption>
+    </figure>
+
     <figure class="ph ph--wide">
       <div class="ph-tile">
         <span class="ph-label">
@@ -424,5 +634,100 @@
     </a>
 
   </main>
+  <script>
+    // Filter demo: OR within a facet group, AND across groups
+    (function () {
+      var root = document.querySelector('.filter-demo');
+      if (!root) return;
+
+      var FACETS = [
+        { key: 'geo',   label: 'Geography',     values: ['Africa', 'Asia Pacific', 'Latin America', 'North America'] },
+        { key: 'topic', label: 'Topic',         values: ['Climate', 'Freshwater', 'Lands', 'Oceans'] },
+        { key: 'type',  label: 'Resource type', values: ['Dataset', 'Publication', 'Tool', 'Method'] }
+      ];
+
+      // 32 sample resources: two for every geography and topic pair, with
+      // types balanced too. Then interleaved so the grid looks mixed.
+      var pool = [];
+      for (var g = 0; g < 4; g++) {
+        for (var t = 0; t < 4; t++) {
+          for (var k = 0; k < 2; k++) {
+            pool.push({
+              geo: FACETS[0].values[g],
+              topic: FACETS[1].values[t],
+              type: FACETS[2].values[(g + t + 2 * k) % 4]
+            });
+          }
+        }
+      }
+      var items = pool.map(function (it, i) { return pool[(i * 7) % pool.length]; });
+
+      var selected = { geo: [], topic: [], type: [] };
+      var facetsEl = root.querySelector('.fd-facets');
+      var grid = root.querySelector('.fd-grid');
+      var count = root.querySelector('.fd-count');
+      var clear = root.querySelector('.fd-clear');
+      var empty = root.querySelector('.fd-empty');
+
+      FACETS.forEach(function (f) {
+        var group = document.createElement('div');
+        group.className = 'fd-group';
+        group.setAttribute('role', 'group');
+        group.setAttribute('aria-label', f.label);
+        group.innerHTML = '<span class="fd-group-label">' + f.label + '</span><div class="fd-chips"></div>';
+        var chips = group.querySelector('.fd-chips');
+        f.values.forEach(function (v) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'fd-chip';
+          b.textContent = v;
+          b.setAttribute('aria-pressed', 'false');
+          b.addEventListener('click', function () {
+            var list = selected[f.key];
+            var at = list.indexOf(v);
+            if (at === -1) list.push(v); else list.splice(at, 1);
+            b.setAttribute('aria-pressed', at === -1 ? 'true' : 'false');
+            render();
+          });
+          chips.appendChild(b);
+        });
+        facetsEl.appendChild(group);
+      });
+
+      function matches(item) {
+        return FACETS.every(function (f) {
+          var list = selected[f.key];
+          return list.length === 0 || list.indexOf(item[f.key]) !== -1;
+        });
+      }
+
+      // On phones, cap the grid so the demo doesn't run 16 rows deep
+      var narrow = window.matchMedia('(max-width: 730px)');
+
+      function render() {
+        var shown = items.filter(matches);
+        var cap = narrow.matches ? 8 : shown.length;
+        grid.innerHTML = shown.slice(0, cap).map(function (it) {
+          return '<li class="fd-card"><span class="fd-type">' + it.type + '</span><i></i><i></i>' +
+                 '<span class="fd-tags">' + it.geo + ' &middot; ' + it.topic + '</span></li>';
+        }).join('') + (shown.length > cap
+          ? '<li class="fd-more">and ' + (shown.length - cap) + ' more</li>'
+          : '');
+        count.textContent = 'Showing ' + shown.length + ' of ' + items.length + ' resources';
+        empty.hidden = shown.length > 0;
+        clear.disabled = !FACETS.some(function (f) { return selected[f.key].length; });
+      }
+
+      clear.addEventListener('click', function () {
+        FACETS.forEach(function (f) { selected[f.key] = []; });
+        root.querySelectorAll('.fd-chip').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+        render();
+      });
+
+      if (narrow.addEventListener) narrow.addEventListener('change', render);
+      render();
+      root.hidden = false;
+    })();
+  </script>
 </body>
 </html>

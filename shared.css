@@ -11,6 +11,11 @@
   box-sizing: border-box;
 }
 
+/* Component display rules shouldn't override the hidden attribute */
+[hidden] {
+  display: none !important;
+}
+
 body {
   font: var(--type-lg);
   letter-spacing: var(--tracking-text);

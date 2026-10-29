@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nature.org Preserves — John Choi</title>
   <meta name="description" content="Redesigning roughly 350 preserve pages on nature.org around what visitors need, and around the data a small team can actually keep accurate.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="John Choi">
+  <meta property="og:title" content="Nature.org Preserves — John Choi">
+  <meta property="og:description" content="Redesigning roughly 350 preserve pages on nature.org around what visitors need, and around the data a small team can actually keep accurate.">
+  <meta property="og:url" content="https://www.suyoungchoi.com/nature-preserves/">
+  <meta property="og:image" content="https://www.suyoungchoi.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -244,6 +253,195 @@
         grid-column: 2;
       }
     }
+
+    /* Build-now / automate-later switcher --------------------------------
+       Progressive enhancement: the static .tradeoffs cards show without
+       JS; with JS the switcher replaces them. */
+    .switcher {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    .seg {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2px;
+      padding: 3px;
+      border-radius: var(--radius-full);
+      background: var(--surface-hover-wash);
+    }
+
+    .seg button {
+      appearance: none;
+      border: 0;
+      padding: var(--space-8) var(--space-8);
+      border-radius: var(--radius-full);
+      background: transparent;
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-deep-gray);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .seg button[aria-selected="true"] {
+      background: var(--color-paper);
+      color: var(--color-primary-ink);
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(29, 29, 31, 0.12);
+    }
+
+    .seg button:focus-visible {
+      outline: 2px solid var(--color-electric-blue);
+      outline-offset: 2px;
+    }
+
+    /* Miniature preserve page */
+    .mock {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+      padding: var(--space-20);
+      border-radius: var(--radius-lg);
+      background: var(--color-paper);
+    }
+
+    .mock-hero {
+      height: 56px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #dfe7dc, #c8d8e0);
+    }
+
+    .mock-module {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      transition: opacity 0.25s ease;
+    }
+
+    .mock-module.is-swapping {
+      opacity: 0;
+    }
+
+    .mock-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .mock-title {
+      font: var(--type-sm-2);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-primary-ink);
+    }
+
+    .mock-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font: var(--type-xs-4);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-deep-gray);
+    }
+
+    .mock-tag::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: var(--tag, var(--color-hairline));
+    }
+
+    .mock-tag[data-kind="auto"]     { --tag: var(--color-electric-blue); }
+    .mock-tag[data-kind="authored"] { --tag: var(--color-ember); }
+    .mock-tag[data-kind="later"]    { --tag: var(--color-hairline); }
+
+    .mock-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-8);
+    }
+
+    .mock-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .mock-card::before {
+      content: "";
+      aspect-ratio: 4 / 3;
+      border-radius: 4px;
+      background: var(--surface-canvas-gray);
+    }
+
+    .mock-card i {
+      display: block;
+      height: 5px;
+      border-radius: var(--radius-full);
+      background: var(--color-cool-wash);
+    }
+
+    .mock-card i + i {
+      width: 60%;
+    }
+
+    /* Map pin: only shown when suggestions are location-aware */
+    .mock-card .pin {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 14px;
+      height: 14px;
+      color: var(--color-primary-ink);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .mock-module[data-location="on"] .pin {
+      opacity: 1;
+    }
+
+    /* Hand-picked: an author's pick is outlined */
+    .mock-module[data-picked="on"] .mock-card::before {
+      box-shadow: inset 0 0 0 1.5px var(--color-ember);
+    }
+
+    .switcher-note {
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-deep-gray);
+      min-height: 3.2em;
+    }
+
+    @media (max-width: 730px) {
+      /* Size segments to their labels so "Recommended" fits on one line */
+      .seg {
+        grid-template-columns: repeat(3, auto);
+      }
+
+      .seg button {
+        padding: var(--space-8) var(--space-8);
+        font: var(--type-xs-4);
+        white-space: nowrap;
+      }
+
+      .mock {
+        padding: var(--space-12);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mock-module,
+      .mock-card .pin,
+      .seg button {
+        transition: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -424,6 +622,25 @@
           <p class="cs-decision-num">These decisions are still being finalized.</p>
         </div>
         <div class="cs-panel">
+          <div class="switcher" hidden>
+            <div class="seg" role="tablist" aria-label="Compare versions">
+              <button type="button" role="tab" id="tab-recommended" aria-selected="false" aria-controls="switcher-panel" data-state="recommended">Recommended</button>
+              <button type="button" role="tab" id="tab-today" aria-selected="true" aria-controls="switcher-panel" data-state="today">Today</button>
+              <button type="button" role="tab" id="tab-later" aria-selected="false" aria-controls="switcher-panel" data-state="later">After upgrade</button>
+            </div>
+            <div class="mock" id="switcher-panel" role="tabpanel" aria-labelledby="tab-today">
+              <div class="mock-hero"></div>
+              <div class="mock-module" data-module="stories">
+                <div class="mock-head"><span class="mock-title">Related stories</span><span class="mock-tag"></span></div>
+                <div class="mock-cards"><div class="mock-card"><svg class="pin" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.2 4.5 8.5 4.5 8.5s4.5-5.3 4.5-8.5A4.5 4.5 0 0 0 8 1.5Zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4Z"/></svg><i></i><i></i></div><div class="mock-card"><svg class="pin" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.2 4.5 8.5 4.5 8.5s4.5-5.3 4.5-8.5A4.5 4.5 0 0 0 8 1.5Zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4Z"/></svg><i></i><i></i></div><div class="mock-card"><svg class="pin" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.2 4.5 8.5 4.5 8.5s4.5-5.3 4.5-8.5A4.5 4.5 0 0 0 8 1.5Zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4Z"/></svg><i></i><i></i></div></div>
+              </div>
+              <div class="mock-module" data-module="preserves">
+                <div class="mock-head"><span class="mock-title"></span><span class="mock-tag"></span></div>
+                <div class="mock-cards"><div class="mock-card"><svg class="pin" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.2 4.5 8.5 4.5 8.5s4.5-5.3 4.5-8.5A4.5 4.5 0 0 0 8 1.5Zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4Z"/></svg><i></i><i></i></div><div class="mock-card"><svg class="pin" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.2 4.5 8.5 4.5 8.5s4.5-5.3 4.5-8.5A4.5 4.5 0 0 0 8 1.5Zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4Z"/></svg><i></i><i></i></div><div class="mock-card"><svg class="pin" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.2 4.5 8.5 4.5 8.5s4.5-5.3 4.5-8.5A4.5 4.5 0 0 0 8 1.5Zm0 6.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4Z"/></svg><i></i><i></i></div></div>
+              </div>
+            </div>
+            <p class="switcher-note" aria-live="polite"></p>
+          </div>
           <div class="tradeoffs">
             <div class="tradeoff">
               <h4>Related stories</h4>
@@ -550,5 +767,86 @@
     </a>
 
   </main>
+  <script>
+    // Recommended / Today / After upgrade switcher for Decision 02
+    (function () {
+      var root = document.querySelector('.switcher');
+      if (!root) return;
+
+      var STATES = {
+        recommended: {
+          stories:   { tag: 'Automatic', kind: 'auto', picked: false },
+          preserves: { title: 'Nearby preserves', tag: 'Automatic, by location', kind: 'auto', location: true },
+          note: 'What the agency recommended: both modules fill themselves in, and suggestions are based on where the preserve is.'
+        },
+        today: {
+          stories:   { tag: 'Hand-picked by authors', kind: 'authored', picked: true },
+          preserves: { title: 'Check out other preserves', tag: 'Automatic, without location', kind: 'auto', location: false },
+          note: 'What we can build and maintain now. Authors choose the stories, and the preserves module runs without location logic.'
+        },
+        later: {
+          stories:   { tag: 'Revisit automation', kind: 'later', picked: false },
+          preserves: { title: 'Check out other preserves', tag: 'Revisit location', kind: 'later', location: false },
+          note: 'Next year TNC moves to a modern cloud version of AEM. The modules are designed to get smarter then, without a template redesign.'
+        }
+      };
+
+      var tabs = root.querySelectorAll('[role="tab"]');
+      var panel = root.querySelector('[role="tabpanel"]');
+      var stories = root.querySelector('[data-module="stories"]');
+      var preserves = root.querySelector('[data-module="preserves"]');
+      var note = root.querySelector('.switcher-note');
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function fill(mod, data) {
+        var tag = mod.querySelector('.mock-tag');
+        tag.textContent = data.tag;
+        tag.setAttribute('data-kind', data.kind);
+        if (data.title) mod.querySelector('.mock-title').textContent = data.title;
+        mod.setAttribute('data-picked', data.picked ? 'on' : 'off');
+        mod.setAttribute('data-location', data.location ? 'on' : 'off');
+      }
+
+      function show(name, animate) {
+        var state = STATES[name];
+        tabs.forEach(function (t) {
+          var on = t.getAttribute('data-state') === name;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          if (on) panel.setAttribute('aria-labelledby', t.id);
+        });
+        note.textContent = state.note;
+
+        if (!animate || calm) {
+          fill(stories, state.stories);
+          fill(preserves, state.preserves);
+          return;
+        }
+        [stories, preserves].forEach(function (m) { m.classList.add('is-swapping'); });
+        setTimeout(function () {
+          fill(stories, state.stories);
+          fill(preserves, state.preserves);
+          [stories, preserves].forEach(function (m) { m.classList.remove('is-swapping'); });
+        }, 200);
+      }
+
+      tabs.forEach(function (t, i) {
+        t.addEventListener('click', function () { show(t.getAttribute('data-state'), true); });
+        // Arrow keys move between tabs, per the ARIA tabs pattern
+        t.addEventListener('keydown', function (e) {
+          var dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (!dir) return;
+          e.preventDefault();
+          var next = tabs[(i + dir + tabs.length) % tabs.length];
+          next.focus();
+          show(next.getAttribute('data-state'), true);
+        });
+      });
+
+      show('today', false);
+      root.hidden = false;
+      root.parentNode.querySelector('.tradeoffs').hidden = true;
+    })();
+  </script>
 </body>
 </html>
