@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TNC Email Ecosystem — John Choi</title>
-  <meta name="description" content="How I consolidated The Nature Conservancy's 13 email templates into 9, built on one shared component system, so a four-person team can support 100+ business units.">
+  <meta name="description" content="How I consolidated The Nature Conservancy's 13 email templates into 8, built on one shared component system, so a four-person team can support 100+ business units.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="John Choi">
   <meta property="og:title" content="TNC Email Ecosystem — John Choi">
-  <meta property="og:description" content="How I consolidated The Nature Conservancy's 13 email templates into 9, built on one shared component system, so a four-person team can support 100+ business units.">
+  <meta property="og:description" content="How I consolidated The Nature Conservancy's 13 email templates into 8, built on one shared component system, so a four-person team can support 100+ business units.">
   <meta property="og:url" content="https://www.suyoungchoi.com/tnc-email/">
   <meta property="og:image" content="https://www.suyoungchoi.com/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="../shared.css">
   <link rel="stylesheet" href="../case-study.css">
   <style>
-    /* 13 → 9 consolidation diagram ---------------------------------------
+    /* 13 → 8 consolidation diagram ---------------------------------------
        Each tile is a miniature email: a header bar and a few text lines. */
     .consolidation {
       display: grid;
@@ -49,7 +49,7 @@
     }
 
     .cg--after .cg-grid {
-      grid-template-columns: repeat(3, 44px);
+      grid-template-columns: repeat(4, 44px);
     }
 
     .cg-tile {
@@ -205,7 +205,7 @@
       </dl>
 
       <ol class="cs-tldr">
-        <li>Consolidated 13 email templates into 9, built on one shared component system.</li>
+        <li>Consolidated 13 email templates into 8, built on one shared component system.</li>
         <li>Made it possible for a four&#8209;person team to support more than 100 business units without adding templates.</li>
         <li>Set accessibility and mobile&#8209;first standards across every email type.</li>
       </ol>
@@ -368,7 +368,7 @@
       </div>
     </section>
 
-    <figure class="consolidation" role="img" aria-label="Diagram: 13 legacy templates consolidated into 9 templates on one shared component system">
+    <figure class="consolidation" role="img" aria-label="Diagram: 13 legacy templates consolidated into 8 templates on one shared component system">
       <div class="cg cg--before">
         <div class="cg-grid">
           <span class="cg-tile" style="--i: 0"></span><span class="cg-tile" style="--i: 1"></span><span class="cg-tile" style="--i: 2"></span><span class="cg-tile" style="--i: 3"></span><span class="cg-tile" style="--i: 4"></span><span class="cg-tile" style="--i: 5"></span><span class="cg-tile" style="--i: 6"></span><span class="cg-tile" style="--i: 7"></span><span class="cg-tile" style="--i: 8"></span><span class="cg-tile" style="--i: 9"></span><span class="cg-tile" style="--i: 10"></span><span class="cg-tile" style="--i: 11"></span><span class="cg-tile" style="--i: 12"></span>
@@ -380,9 +380,9 @@
       </svg>
       <div class="cg cg--after">
         <div class="cg-grid">
-          <span class="cg-tile" style="--i: 0"></span><span class="cg-tile" style="--i: 1"></span><span class="cg-tile" style="--i: 2"></span><span class="cg-tile" style="--i: 3"></span><span class="cg-tile" style="--i: 4"></span><span class="cg-tile" style="--i: 5"></span><span class="cg-tile" style="--i: 6"></span><span class="cg-tile" style="--i: 7"></span><span class="cg-tile" style="--i: 8"></span>
+          <span class="cg-tile" style="--i: 0"></span><span class="cg-tile" style="--i: 1"></span><span class="cg-tile" style="--i: 2"></span><span class="cg-tile" style="--i: 3"></span><span class="cg-tile" style="--i: 4"></span><span class="cg-tile" style="--i: 5"></span><span class="cg-tile" style="--i: 6"></span><span class="cg-tile" style="--i: 7"></span>
         </div>
-        <p class="cg-caption"><strong>9 templates</strong>One shared component system</p>
+        <p class="cg-caption"><strong>8 templates</strong>One shared component system</p>
       </div>
     </figure>
 
@@ -392,7 +392,7 @@
       <div class="cs-body">
         <div class="cs-stats cs-stats--large">
           <div>
-            <span class="cs-stat-value">13 &rarr; 9</span>
+            <span class="cs-stat-value">13 &rarr; 8</span>
             <span class="cs-stat-label">Email templates</span>
           </div>
           <div>
@@ -453,7 +453,7 @@
 
   </main>
   <script>
-    // Play the 13 → 9 merge once, when the diagram is mostly in view
+    // Play the 13 → 8 merge once, when the diagram is mostly in view
     (function () {
       var fig = document.querySelector('.consolidation');
       if (!fig || !('IntersectionObserver' in window)) return;
