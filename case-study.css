@@ -1,0 +1,504 @@
+/* ==========================================================================
+   Case study layout — shared by every case study page.
+   Loaded after shared.css; values come from tokens.css.
+   ========================================================================== */
+
+/* Page frame ----------------------------------------------------------- */
+
+/* Wider than .container so visuals have room; text stays in .cs-body. */
+.cs {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--space-80) var(--space-52) var(--space-120);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+}
+
+/* Readable text column, used inside full-width rows */
+.cs-body {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.cs-body p,
+.cs-body li {
+  font: var(--type-lg);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-primary-ink);
+}
+
+.cs-body h3 {
+  font: var(--type-lg-2);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-primary-ink);
+  margin-top: var(--space-8);
+}
+
+/* At-a-glance header --------------------------------------------------- */
+
+.cs-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-40);
+}
+
+.cs-title {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.cs-title h1 {
+  font: var(--type-5xl-2);
+  letter-spacing: var(--tracking-headline);
+  color: var(--color-primary-ink);
+}
+
+.cs-tagline {
+  font: var(--type-2xl-2);
+  letter-spacing: var(--tracking-headline);
+  color: var(--color-mid-gray);
+}
+
+.cs-status {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-full);
+  background: var(--surface-canvas-gray);
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-deep-gray);
+}
+
+.cs-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-electric-blue);
+}
+
+.cs-status--progress::before {
+  background: var(--color-ember);
+}
+
+.cs-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-24) var(--space-32);
+  padding-top: var(--space-24);
+  border-top: 1px solid var(--color-hairline);
+}
+
+.cs-meta dt {
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-mid-gray);
+  margin-bottom: var(--space-4);
+}
+
+.cs-meta dd {
+  font: var(--type-lg);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-primary-ink);
+}
+
+.cs-tldr {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-32);
+  counter-reset: tldr;
+}
+
+.cs-tldr li {
+  font: var(--type-lg);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-primary-ink);
+  counter-increment: tldr;
+}
+
+.cs-tldr li::before {
+  content: "0" counter(tldr);
+  display: block;
+  font: var(--type-sm-2);
+  color: var(--color-mid-gray);
+  margin-bottom: var(--space-8);
+}
+
+/* Core question -------------------------------------------------------- */
+
+.cs-statement {
+  max-width: 880px;
+  font: var(--type-4xl);
+  letter-spacing: var(--tracking-headline);
+  color: var(--color-primary-ink);
+}
+
+/* Fills from gray to ink as it scrolls into view, where supported */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .cs-statement {
+      animation: cs-ink-in linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 45%;
+    }
+  }
+}
+
+@keyframes cs-ink-in {
+  from { color: var(--color-hairline); }
+  to   { color: var(--color-primary-ink); }
+}
+
+/* Labeled sections: small label left, body right ------------------------ */
+
+.cs-section {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: var(--space-32);
+  align-items: start;
+}
+
+.cs-label {
+  font: var(--type-xs-5);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-mid-gray);
+  padding-top: var(--space-4);
+}
+
+/* Lists inside sections */
+.cs-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.cs-list li {
+  position: relative;
+  padding-left: var(--space-16);
+}
+
+.cs-list li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  color: var(--color-mid-gray);
+}
+
+/* Side-by-side lists, e.g. team vs. subscriber problems */
+.cs-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-32);
+  margin-top: var(--space-8);
+}
+
+.cs-columns > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.cs-columns h3 {
+  margin-top: 0;
+}
+
+.cs-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.cs-chips li {
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-deep-gray);
+  padding: var(--space-4) var(--space-12);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-full);
+}
+
+/* Numbered principles */
+.cs-principles {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  counter-reset: principle;
+}
+
+.cs-principles li {
+  counter-increment: principle;
+  display: grid;
+  grid-template-columns: var(--space-32) minmax(0, 1fr);
+}
+
+.cs-principles li::before {
+  content: counter(principle);
+  font: var(--type-lg-2);
+  color: var(--color-mid-gray);
+}
+
+.cs-principles strong {
+  display: block;
+  font: var(--type-lg-2);
+  margin-bottom: var(--space-4);
+}
+
+/* Figures: stats and big impact numbers --------------------------------- */
+
+.cs-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-24);
+  margin: var(--space-8) 0;
+}
+
+.cs-stat-value {
+  display: block;
+  font: var(--type-3xl-2);
+  letter-spacing: var(--tracking-headline);
+  color: var(--color-primary-ink);
+}
+
+.cs-stat-label {
+  display: block;
+  margin-top: var(--space-4);
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-mid-gray);
+}
+
+.cs-stats--large .cs-stat-value {
+  font: var(--type-5xl-2);
+  letter-spacing: var(--tracking-headline);
+}
+
+/* Pinned decisions: text stays put while the visual scrolls past -------- */
+
+.cs-decisions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-120);
+}
+
+.cs-decision {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-52);
+  align-items: start;
+}
+
+.cs-decision-text {
+  position: sticky;
+  top: var(--space-80);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.cs-decision-text h3 {
+  font: var(--type-2xl-2);
+  letter-spacing: var(--tracking-headline);
+  color: var(--color-primary-ink);
+}
+
+.cs-decision-text p {
+  font: var(--type-lg);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-primary-ink);
+}
+
+.cs-decision-num {
+  font: var(--type-sm-2);
+  color: var(--color-mid-gray);
+}
+
+/* Placeholder image ------------------------------------------------------
+   Stands in for a visual that hasn't been supplied yet. The caption says
+   exactly which image belongs here. */
+
+.ph {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.ph-tile {
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-3xl);
+  background: var(--surface-canvas-gray);
+  border: 1px dashed var(--color-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ph--tall .ph-tile   { aspect-ratio: 4 / 5; }
+.ph--wide .ph-tile   { aspect-ratio: 21 / 9; }
+
+.ph-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-mid-gray);
+}
+
+.ph-label svg {
+  width: 18px;
+  height: 18px;
+}
+
+.ph figcaption {
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-mid-gray);
+  max-width: 680px;
+}
+
+.ph figcaption strong {
+  font-weight: 600;
+  color: var(--color-deep-gray);
+}
+
+/* Collaborators and next case study ------------------------------------- */
+
+.cs-credits {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.cs-credits li {
+  font: var(--type-lg);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-primary-ink);
+}
+
+.cs-credits span {
+  color: var(--color-mid-gray);
+}
+
+.cs-next {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-top: var(--space-40);
+  border-top: 1px solid var(--color-hairline);
+  text-decoration: none;
+  color: var(--color-primary-ink);
+}
+
+.cs-next-label {
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-mid-gray);
+}
+
+.cs-next-title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-12);
+  font: var(--type-4xl);
+  letter-spacing: var(--tracking-headline);
+}
+
+.cs-next-title svg {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cs-next:hover .cs-next-title {
+  color: var(--color-link-blue);
+}
+
+.cs-next:hover .cs-next-title svg {
+  transform: translateX(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-next-title svg {
+    transition: none;
+  }
+}
+
+/* Mobile --------------------------------------------------------------- */
+
+@media (max-width: 860px) {
+  .cs-decision {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-24);
+  }
+
+  .cs-decision-text {
+    position: static;
+  }
+
+  .cs-decisions {
+    gap: var(--space-80);
+  }
+
+  /* Stacked under its text, a portrait tile would fill the whole screen */
+  .ph--tall .ph-tile {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 730px) {
+  .cs {
+    padding: var(--space-76) var(--space-24) var(--space-80);
+    gap: var(--space-52);
+  }
+
+  .cs-title h1 {
+    font: var(--type-3xl-2);
+    letter-spacing: var(--tracking-headline);
+  }
+
+  .cs-tagline {
+    font: var(--type-xl-3);
+  }
+
+  .cs-tldr,
+  .cs-columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-20);
+  }
+
+  .cs-statement {
+    font: var(--type-2xl-2);
+    letter-spacing: var(--tracking-headline);
+  }
+
+  .cs-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-12);
+  }
+
+  .cs-stats--large .cs-stat-value {
+    font: var(--type-4xl);
+  }
+
+  .cs-next-title {
+    font: var(--type-2xl-2);
+  }
+
+  .ph-tile {
+    border-radius: var(--radius-lg);
+  }
+}
