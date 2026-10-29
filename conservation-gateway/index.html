@@ -116,6 +116,123 @@
     }
 
 
+    /* Taxonomy: legacy menus vs. live facets ------------------------------ */
+    .taxonomy {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-32) var(--space-40);
+    }
+
+    .taxonomy figcaption {
+      grid-column: 1 / -1;
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
+    }
+
+    .tx-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .tx-label {
+      font: var(--type-xs-5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-mid-gray);
+    }
+
+    .tx-col h3 {
+      font: var(--type-xl-4);
+      letter-spacing: var(--tracking-display);
+      color: var(--color-primary-ink);
+    }
+
+    .tx-note {
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-deep-gray);
+      margin-bottom: var(--space-8);
+    }
+
+    .tx-menus {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-8);
+    }
+
+    .tx-menu {
+      padding: var(--space-12);
+      border-radius: var(--radius-lg);
+      background: var(--color-paper);
+    }
+
+    .tx-menu h4 {
+      font: var(--type-xs-5);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-primary-ink);
+      margin-bottom: var(--space-8);
+    }
+
+    .tx-menu ul,
+    .tx-facets {
+      list-style: none;
+    }
+
+    .tx-menu li {
+      font: var(--type-xs-4);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-deep-gray);
+      padding: 3px 0;
+      border-top: 1px solid var(--surface-hover-wash);
+    }
+
+    .tx-facets {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-8);
+    }
+
+    .tx-facets li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: var(--space-12) var(--space-16);
+      border-radius: var(--radius-lg);
+      background: var(--color-paper);
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-primary-ink);
+    }
+
+    .tx-facets b {
+      font: var(--type-xl-4);
+      letter-spacing: var(--tracking-display);
+      color: var(--color-link-blue);
+    }
+
+    .tx-total {
+      margin-top: var(--space-8);
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-deep-gray);
+    }
+
+    .tx-total b {
+      color: var(--color-primary-ink);
+    }
+
+    @media (max-width: 730px) {
+      .taxonomy {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .tx-menus {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
     /* Filter demo ---------------------------------------------------------
        Built by JS; stays hidden without it. Sample data only. */
     .filter-demo {
@@ -352,14 +469,9 @@
       </ol>
     </header>
 
-    <figure class="ph">
-      <div class="ph-tile">
-        <span class="ph-label">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
-          Placeholder
-        </span>
-      </div>
-      <figcaption><strong>Image needed:</strong> the redesigned Conservation Gateway, desktop and mobile side by side. Ideally the resource library with search and filters visible.</figcaption>
+    <figure class="cs-figure">
+      <img src="/conservation-gateway/gateway-hero.jpg" width="2160" height="1350" alt="The redesigned Explore All Resources page on desktop and mobile, filtered to Tool, North America, and Freshwater, showing 6 results.">
+      <figcaption>Explore All Resources, the new home of the library, on desktop and mobile.</figcaption>
     </figure>
 
     <!-- Core question -->
@@ -392,14 +504,9 @@
       </div>
     </section>
 
-    <figure class="ph ph--wide">
-      <div class="ph-tile">
-        <span class="ph-label">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
-          Placeholder
-        </span>
-      </div>
-      <figcaption><strong>Image needed:</strong> the legacy Conservation Gateway next to the redesigned version, same page type, full&#8209;page screenshots.</figcaption>
+    <figure class="cs-figure">
+      <img src="/conservation-gateway/gateway-before-after.jpg" width="2160" height="1520" loading="lazy" alt="Before: the legacy North America page, with a hand-linked partial list of materials and search modules showing errors. After: the new resource library filtered to North America, showing 1,045 tagged resources.">
+      <figcaption>The same question, &ldquo;what do we have for North America?&rdquo;, on the legacy site and the new one.</figcaption>
     </figure>
 
     <!-- Role -->
@@ -449,14 +556,41 @@
       </div>
     </section>
 
-    <figure class="ph ph--wide">
-      <div class="ph-tile">
-        <span class="ph-label">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
-          Placeholder
-        </span>
+    <figure class="cs-panel taxonomy">
+      <div class="tx-col">
+        <p class="tx-label">Before</p>
+        <h3>Three menus, one home per page</h3>
+        <p class="tx-note">Each page sat in a single branch of the site navigation.</p>
+        <div class="tx-menus">
+          <div class="tx-menu">
+            <h4>Conservation Planning</h4>
+            <ul><li>Conservation by Design</li><li>Business Planning</li><li>Action Planning</li><li>Measures</li><li>Setting Priorities</li><li>Tools and Data</li></ul>
+          </div>
+          <div class="tx-menu">
+            <h4>Conservation Practices</h4>
+            <ul><li>Freshwater</li><li>Marine</li><li>Climate Change</li><li>Fire and Landscapes</li><li>Ecosystem Services</li><li>People and Conservation</li></ul>
+          </div>
+          <div class="tx-menu">
+            <h4>Conservation by Geography</h4>
+            <ul><li>Africa</li><li>Asia Pacific</li><li>North America</li><li>South America</li></ul>
+          </div>
+        </div>
       </div>
-      <figcaption><strong>Image needed:</strong> the information architecture or taxonomy diagram, ideally the version validated in tree testing, showing top&#8209;level categories and how resources are tagged.</figcaption>
+      <div class="tx-col">
+        <p class="tx-label">After</p>
+        <h3>Six facets, any combination</h3>
+        <p class="tx-note">Every resource is tagged once and can be found from any direction.</p>
+        <ul class="tx-facets">
+          <li><span>Global regions</span><b>6</b></li>
+          <li><span>U.S. states</span><b>51</b></li>
+          <li><span>Resource type</span><b>19</b></li>
+          <li><span>Subject</span><b>55</b></li>
+          <li><span>Focus area</span><b>5</b></li>
+          <li><span>Language</span><b>8</b></li>
+        </ul>
+        <p class="tx-total"><b>144</b> filter options across <b>2,073</b> resources</p>
+      </div>
+      <figcaption>Navigation menus from the legacy site; facet groups and counts from the live Explore All Resources page.</figcaption>
     </figure>
 
     <!-- Key decisions -->
@@ -559,14 +693,9 @@
       <figcaption>Illustrative demo with sample data, not real Conservation Gateway resources.</figcaption>
     </figure>
 
-    <figure class="ph ph--wide">
-      <div class="ph-tile">
-        <span class="ph-label">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
-          Placeholder
-        </span>
-      </div>
-      <figcaption><strong>Image needed:</strong> search results with filters applied, showing how a user narrows thousands of resources down to a few.</figcaption>
+    <figure class="cs-figure">
+      <img src="/conservation-gateway/gateway-filtering.jpg" width="2160" height="980" loading="lazy" alt="The full library showing 2,073 resources, then the same page with Tool, North America, and Freshwater checked, showing 6 resources.">
+      <figcaption>Three filters take the library from 2,073 resources to 6.</figcaption>
     </figure>
 
     <!-- Impact -->

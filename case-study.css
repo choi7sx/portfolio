@@ -331,6 +331,29 @@
   color: var(--color-deep-gray);
 }
 
+/* Figures: real images that replace placeholders ----------------------- */
+
+.cs-figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.cs-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-3xl);
+  background: var(--surface-canvas-gray);
+}
+
+.cs-figure figcaption {
+  font: var(--type-sm);
+  letter-spacing: var(--tracking-text);
+  color: var(--color-mid-gray);
+  max-width: 680px;
+}
+
 /* Collaborators and next case study ------------------------------------- */
 
 .cs-credits {
@@ -454,6 +477,10 @@
 
   .cs-next-title {
     font: var(--type-2xl-2);
+  }
+
+  .cs-figure img {
+    border-radius: var(--radius-lg);
   }
 
   .cs-panel {
