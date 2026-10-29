@@ -57,36 +57,14 @@
   color: var(--color-primary-ink);
 }
 
+.cs-title .cs-status {
+  margin-top: var(--space-8);
+}
+
 .cs-tagline {
   font: var(--type-2xl-2);
   letter-spacing: var(--tracking-headline);
   color: var(--color-mid-gray);
-}
-
-.cs-status {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-8);
-  margin-top: var(--space-8);
-  padding: var(--space-4) var(--space-12);
-  border-radius: var(--radius-full);
-  background: var(--surface-canvas-gray);
-  font: var(--type-sm);
-  letter-spacing: var(--tracking-text);
-  color: var(--color-deep-gray);
-}
-
-.cs-status::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--color-electric-blue);
-}
-
-.cs-status--progress::before {
-  background: var(--color-ember);
 }
 
 .cs-meta {
@@ -353,55 +331,6 @@
   color: var(--color-deep-gray);
 }
 
-/* Placeholder image ------------------------------------------------------
-   Stands in for a visual that hasn't been supplied yet. The caption says
-   exactly which image belongs here. */
-
-.ph {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-12);
-}
-
-.ph-tile {
-  aspect-ratio: 16 / 10;
-  border-radius: var(--radius-3xl);
-  background: var(--surface-canvas-gray);
-  border: 1px dashed var(--color-hairline);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ph--tall .ph-tile   { aspect-ratio: 4 / 5; }
-.ph--wide .ph-tile   { aspect-ratio: 21 / 9; }
-
-.ph-label {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-8);
-  font: var(--type-sm);
-  letter-spacing: var(--tracking-text);
-  color: var(--color-mid-gray);
-}
-
-.ph-label svg {
-  width: 18px;
-  height: 18px;
-}
-
-.ph figcaption {
-  font: var(--type-sm);
-  letter-spacing: var(--tracking-text);
-  color: var(--color-mid-gray);
-  max-width: 680px;
-}
-
-.ph figcaption strong {
-  font-weight: 600;
-  color: var(--color-deep-gray);
-}
-
 /* Collaborators and next case study ------------------------------------- */
 
 .cs-credits {
@@ -525,10 +454,6 @@
 
   .cs-next-title {
     font: var(--type-2xl-2);
-  }
-
-  .ph-tile {
-    border-radius: var(--radius-lg);
   }
 
   .cs-panel {

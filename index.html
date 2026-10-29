@@ -21,7 +21,7 @@
 
     .nav-bar {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       align-items: center;
       gap: var(--space-16);
       padding: var(--space-12) var(--space-24);
@@ -79,57 +79,346 @@
       }
     }
 
-    /* Bio Content */
-    .bio {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-32);
+    html {
+      scroll-behavior: smooth;
     }
 
-    .bio p {
-      font: var(--type-lg);
-      letter-spacing: var(--tracking-text);
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    /* Thesis and proof ------------------------------------------------- */
+    .thesis {
+      font: var(--type-4xl);
+      letter-spacing: var(--tracking-headline);
       color: var(--color-primary-ink);
     }
 
-    .bio a {
-      color: var(--color-link-blue);
-      text-decoration: underline;
-      text-underline-offset: 2px;
+    .proof {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-24);
+      padding: var(--space-24) 0;
+      border-top: 1px solid var(--color-hairline);
+      border-bottom: 1px solid var(--color-hairline);
     }
 
-    .bio a:hover {
-      color: var(--color-electric-blue);
+    .proof-value {
+      display: block;
+      font: var(--type-3xl-2);
+      letter-spacing: var(--tracking-headline);
+      color: var(--color-primary-ink);
+      white-space: nowrap;
     }
 
-    /* Label that sits directly above a list */
-    .list-label {
-      margin-bottom: calc(var(--space-24) * -1);
+    .proof-label {
+      display: block;
+      margin-top: var(--space-4);
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
     }
 
-    /* Interests List */
-    .interests {
+    /* Sections --------------------------------------------------------- */
+    .home-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-24);
+    }
+
+    #work {
+      scroll-margin-top: var(--space-120);
+    }
+
+    .section-label {
+      font: var(--type-xs-5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-mid-gray);
+    }
+
+    /* Selected work rows ----------------------------------------------- */
+    .work-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .work-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: var(--space-32);
+      align-items: center;
+      padding: var(--space-28) 0;
+      border-top: 1px solid var(--color-hairline);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .work-list li:last-child .work-item {
+      border-bottom: 1px solid var(--color-hairline);
+    }
+
+    .work-text {
       display: flex;
       flex-direction: column;
       gap: var(--space-8);
     }
 
-    .interests p {
+    .work-title {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+      font: var(--type-2xl);
+      letter-spacing: var(--tracking-headline);
+      color: var(--color-primary-ink);
+    }
+
+    .work-title svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .work-tagline {
+      font: var(--type-lg);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
+      margin-top: calc(var(--space-4) * -1);
+    }
+
+    .work-summary {
       font: var(--type-lg);
       letter-spacing: var(--tracking-text);
       color: var(--color-primary-ink);
-      margin-bottom: var(--space-4);
     }
 
-    .interests li {
+    .work-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-8) var(--space-12);
+      margin-top: var(--space-4);
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
+    }
+
+    .work-item:hover .work-title {
+      color: var(--color-link-blue);
+    }
+
+    .work-item:hover .work-title svg {
+      transform: translateX(4px);
+    }
+
+    /* Thumbnails: small diagrams that stand in until real images exist */
+    .work-thumb {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-lg);
+      background: var(--surface-canvas-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-12);
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .work-item:hover .work-thumb {
+      transform: scale(1.03);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .work-thumb,
+      .work-title svg {
+        transition: none;
+      }
+    }
+
+    /* Email: 13 templates become 9 */
+    .mini-grid {
+      display: grid;
+      gap: 4px;
+    }
+
+    .mini-grid--before { grid-template-columns: repeat(5, 12px); }
+    .mini-grid--after  { grid-template-columns: repeat(3, 16px); }
+
+    .mini-grid span {
+      aspect-ratio: 3 / 4;
+      border-radius: 2px;
+      background: var(--color-paper);
+      border-top: 3px solid var(--color-hairline);
+    }
+
+    .mini-grid--before span:nth-child(3n) { border-top-color: var(--color-mid-gray); }
+    .mini-grid--after span { border-top-color: var(--color-primary-ink); }
+
+    .mini-arrow {
+      width: 16px;
+      height: 16px;
+      color: var(--color-mid-gray);
+    }
+
+    /* Preserves: 59 of 60 */
+    .mini-dots {
+      display: grid;
+      grid-template-columns: repeat(10, 8px);
+      gap: 5px;
+    }
+
+    .mini-dots span {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--color-primary-ink);
+    }
+
+    .mini-dots span:last-child {
+      background: transparent;
+      box-shadow: inset 0 0 0 1px var(--color-mid-gray);
+    }
+
+    /* Gateway: a structured resource page */
+    .mini-resource {
+      width: 62%;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding: var(--space-12);
+      border-radius: 6px;
+      background: var(--color-paper);
+      box-shadow: 0 1px 2px rgba(29, 29, 31, 0.08);
+    }
+
+    .mini-resource i {
+      display: block;
+      height: 5px;
+      border-radius: var(--radius-full);
+      background: var(--color-cool-wash);
+    }
+
+    .mini-resource i:nth-child(1) { height: 7px; width: 70%; background: var(--color-hairline); }
+    .mini-resource i:nth-child(3) { width: 35%; background: rgba(0, 113, 227, 0.3); }
+    .mini-resource i:nth-child(4) { width: 55%; }
+
+    /* More work -------------------------------------------------------- */
+    .more-list {
       list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-20);
+    }
+
+    .more-list li {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .more-title {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-8);
+      font: var(--type-lg-2);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-primary-ink);
+    }
+
+    .more-list p {
+      font: var(--type-lg);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-deep-gray);
+    }
+
+    /* Building --------------------------------------------------------- */
+    .building {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      padding: var(--space-24);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+    }
+
+    .building-name {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-12);
+      font: var(--type-2xl);
+      letter-spacing: var(--tracking-headline);
+      color: var(--color-primary-ink);
+    }
+
+    .building p {
       font: var(--type-lg);
       letter-spacing: var(--tracking-text);
       color: var(--color-primary-ink);
     }
 
-    .interests li::before {
-      content: "\2192\00a0";
+    .building-role {
+      color: var(--color-mid-gray) !important;
+    }
+
+    /* About ------------------------------------------------------------ */
+    .about {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 200px;
+      gap: var(--space-32);
+      align-items: start;
+    }
+
+    .about-text {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    .about-text p {
+      font: var(--type-lg);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-primary-ink);
+    }
+
+    .about-text a {
+      color: var(--color-link-blue);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .about-text a:hover {
+      color: var(--color-electric-blue);
+    }
+
+    /* Footer ----------------------------------------------------------- */
+    .site-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-16);
+      padding-top: var(--space-24);
+      border-top: 1px solid var(--color-hairline);
+      font: var(--type-sm);
+      letter-spacing: var(--tracking-text);
+      color: var(--color-mid-gray);
+    }
+
+    .site-footer nav {
+      display: flex;
+      gap: var(--space-20);
+    }
+
+    .site-footer a {
+      color: var(--color-primary-ink);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      color: var(--color-link-blue);
     }
 
     /* Mobile Responsive */
@@ -143,6 +432,35 @@
         /* A squircle reads better than a stadium at two rows tall */
         border-radius: var(--radius-3xl);
       }
+
+      .thesis {
+        font: var(--type-2xl-2);
+        letter-spacing: var(--tracking-headline);
+      }
+
+      .proof {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-20) var(--space-16);
+      }
+
+      /* No hover on touch: show the thumbnail first, full width */
+      .work-item {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-16);
+      }
+
+      .work-thumb {
+        order: -1;
+        aspect-ratio: 16 / 9;
+      }
+
+      .about {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .about .ph {
+        max-width: 240px;
+      }
     }
   </style>
 </head>
@@ -153,13 +471,14 @@
       <img src="profile.png" alt="John Choi headshot" class="profile-photo">
       <div class="profile-info">
         <h1>John Choi</h1>
-        <p>Senior Product Designer | Product Owner</p>
+        <p>Senior Product Designer</p>
       </div>
     </div>
 
     <!-- Navigation Links -->
     <nav class="nav-links">
       <div class="nav-bar">
+        <a href="#work">Work</a>
         <a href="/resume">
           Resume
           <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
@@ -181,23 +500,134 @@
       </div>
     </nav>
 
-    <!-- Bio Section -->
-    <section class="bio">
-      <p>I&rsquo;m a Product Designer and Product Owner focused on helping organizations solve complex problems at scale. While I started my career in design, my work has expanded into product strategy, information architecture, governance, and AI&#8209;driven process improvement. I&rsquo;m most energized by helping teams create better experiences while building the systems and foundations that make those experiences sustainable over time.</p>
+    <!-- Thesis -->
+    <p class="thesis">I turn sprawling platforms into systems a small team can actually sustain.</p>
 
-      <p>Currently, I serve as a Senior UX Designer and Product Owner at <a href="https://www.nature.org" target="_blank" rel="noopener noreferrer">The Nature Conservancy (TNC)</a>, where I help shape the future of <a href="https://nature.org" target="_blank" rel="noopener noreferrer">nature.org</a> and other products across the organization&rsquo;s digital ecosystem. Whether I&rsquo;m improving content discovery, streamlining workflows, or guiding large&#8209;scale platform initiatives, my goal is always the same: create meaningful outcomes for both users and the teams that support them.</p>
+    <div class="proof">
+      <div>
+        <span class="proof-value">13 &rarr; 9</span>
+        <span class="proof-label">Email templates, one shared system</span>
+      </div>
+      <div>
+        <span class="proof-value">100+</span>
+        <span class="proof-label">Business units supported by a team of four</span>
+      </div>
+      <div>
+        <span class="proof-value">5,000+</span>
+        <span class="proof-label">Research resources made findable</span>
+      </div>
+      <div>
+        <span class="proof-value">~350</span>
+        <span class="proof-label">Preserve pages being redesigned</span>
+      </div>
+    </div>
 
-      <p class="list-label"><strong>Selected impact at TNC:</strong></p>
-      <ul class="impact-list">
-        <li>Consolidated a 13&#8209;template email ecosystem into 9 scalable templates supported by a shared component system, enabling a four&#8209;person centralized team to support more than 100 business units. <a href="/tnc-email/">Learn more</a></li>
-        <li>Helped shape the migration and redesign of Conservation Gateway, creating a scalable platform for research discovery, governance, and access to 5,000+ conservation science resources used globally. <a href="/conservation-gateway/">Learn more</a></li>
-        <li>Leading a multi&#8209;year initiative to consolidate 170+ independent web properties into a unified CMS ecosystem, reducing security risk, lowering operational overhead, and improving long&#8209;term governance.</li>
-        <li>Helped shape a new site&#8209;wide information architecture for nature.org, improving content discoverability and creating a more scalable foundation for the organization&rsquo;s primary digital platform.</li>
-        <li>Designed and deployed three Copilot&#8209;powered AI agents that improved backlog quality, UX reviews, and communication workflows, reducing recurring operational overhead for a cross&#8209;functional product team.</li>
+    <!-- Selected work -->
+    <section class="home-section" id="work">
+      <h2 class="section-label">Selected work</h2>
+      <ul class="work-list">
+        <li>
+          <a class="work-item" href="/tnc-email/">
+            <div class="work-text">
+              <span class="work-title">TNC Email Ecosystem <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5"/></svg></span>
+              <span class="work-tagline">13 templates, one system</span>
+              <p class="work-summary">Consolidated 13 email templates into 9 on one shared component system, so a four&#8209;person team can support more than 100 business units.</p>
+              <span class="work-meta">2026 &middot; Senior UX Designer <span class="cs-status">Shipped</span></span>
+            </div>
+            <div class="work-thumb" aria-hidden="true">
+              <div class="mini-grid mini-grid--before"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              <svg class="mini-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+              <div class="mini-grid mini-grid--after"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="work-item" href="/nature-preserves/">
+            <div class="work-text">
+              <span class="work-title">Nature.org Preserves <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5"/></svg></span>
+              <span class="work-tagline">Helping visitors find and plan a visit</span>
+              <p class="work-summary">Taking an agency&rsquo;s wireframes to buildable, high&#8209;fidelity components, designed around which data can come from TNC&rsquo;s land management system.</p>
+              <span class="work-meta">2026&ndash;Now &middot; Senior UX Designer and Product Owner <span class="cs-status cs-status--progress">In progress</span></span>
+            </div>
+            <div class="work-thumb" aria-hidden="true">
+              <div class="mini-dots"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="work-item" href="/conservation-gateway/">
+            <div class="work-text">
+              <span class="work-title">Conservation Gateway <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5"/></svg></span>
+              <span class="work-tagline">5,000+ resources, finally findable</span>
+              <p class="work-summary">Helped migrate and redesign TNC&rsquo;s hub for conservation science, with metadata&#8209;driven discovery and governance built into the design.</p>
+              <span class="work-meta">2025&ndash;Now &middot; Senior UX Designer <span class="cs-status">Launched</span></span>
+            </div>
+            <div class="work-thumb" aria-hidden="true">
+              <div class="mini-resource"><i></i><i></i><i></i><i></i></div>
+            </div>
+          </a>
+        </li>
       </ul>
-
-      <p>Outside of work, I&rsquo;m co&#8209;founding a supplement company called MorningDew with my brother. When I&rsquo;m not designing products, you&rsquo;ll usually find me training Brazilian Jiu&#8209;Jitsu, reading science fiction, spending time with my family, or sweating through a sauna session.</p>
     </section>
+
+    <!-- More work -->
+    <section class="home-section">
+      <h2 class="section-label">More work</h2>
+      <ul class="more-list">
+        <li>
+          <span class="more-title">170+ web properties, one CMS</span>
+          <p>Leading a multi&#8209;year initiative to consolidate independent sites into a unified CMS ecosystem, reducing security risk and operational overhead.</p>
+        </li>
+        <li>
+          <span class="more-title">Nature.org information architecture</span>
+          <p>Helped shape a new site&#8209;wide information architecture that makes content easier to discover and gives the platform a more scalable foundation.</p>
+        </li>
+        <li>
+          <span class="more-title">Three Copilot AI agents <span class="cs-status cs-status--progress">Case study coming</span></span>
+          <p>Designed and deployed agents that improved backlog quality, UX reviews, and communication workflows for a cross&#8209;functional product team.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Building -->
+    <section class="home-section">
+      <h2 class="section-label">Building</h2>
+      <div class="building">
+        <span class="building-name">MorningDew <span class="cs-status cs-status--progress">Pre&#8209;launch</span></span>
+        <p class="building-role">Co&#8209;founder</p>
+        <p>A supplement company I&rsquo;m building with my brother. We&rsquo;re currently in benchtop and stability testing.</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="home-section">
+      <h2 class="section-label">About</h2>
+      <div class="about">
+        <div class="about-text">
+          <p>I started my career in design, and my work has grown into product strategy, information architecture, governance, and AI&#8209;driven process improvement. I&rsquo;m most energized by building the systems and foundations that keep good experiences sustainable over time.</p>
+          <p>Today I&rsquo;m a Senior UX Designer and Product Owner at <a href="https://www.nature.org" target="_blank" rel="noopener noreferrer">The Nature Conservancy</a>, where I help shape nature.org and other products across the organization&rsquo;s digital ecosystem.</p>
+          <p>Outside of work, you&rsquo;ll usually find me training Brazilian Jiu&#8209;Jitsu, reading science fiction, spending time with my family, or sweating through a sauna session.</p>
+        </div>
+        <figure class="ph ph--tall">
+          <div class="ph-tile">
+            <span class="ph-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
+              Placeholder
+            </span>
+          </div>
+          <figcaption><strong>Image needed:</strong> a casual photo that isn&rsquo;t a headshot, for example outdoors, at a workshop, or with family.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <span>John Choi</span>
+      <nav aria-label="Contact">
+        <a href="mailto:choi7sx@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/johnsychoi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="/resume">Resume</a>
+      </nav>
+    </footer>
   </div>
 
   <script>
